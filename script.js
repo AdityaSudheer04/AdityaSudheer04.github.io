@@ -1,31 +1,67 @@
 window.onload = () => {
-    let downloaded = false;
+    let testEntityAdded = false;
 
     const el = document.querySelector("[gps-new-camera]");
 
-    el.addEventListener("gps-camera-update-position", async(e) => {
-        if(!downloaded) {
-            const west = e.detail.position.longitude - 0.01,
-                  east = e.detail.position.longitude + 0.01,
-                  south = e.detail.position.latitude - 0.01;
-                  north = e.detail.position.latitude + 0.01;
-            const response = await fetch(`https://hikar.org/webapp/map?bbox=${west},${south},${east},${north}&layers=poi&outProj=4326`);
-            const pois = await response.json();
-            pois.features.forEach ( feature => {
-                const entity = document.createElement("a-box");
-                entity.setAttribute("scale", {
-                    x: 20, 
-                    y: 20,
-                    z: 20
-                });
-                entity.setAttribute('material', { color: 'red' } );
-                entity.setAttribute('gps-new-entity-place', {
-                    latitude: feature.geometry.coordinates[1],
-                    longitude: feature.geometry.coordinates[0]
-                }); 
-                document.querySelector("a-scene").appendChild(entity);
+    el.addEventListener("gps-camera-update-position", e => {
+        if(!testEntityAdded) {
+            alert(`Got first GPS position: lon ${e.detail.position.longitude} lat ${e.detail.position.latitude}`);
+            // Add a box to the north of the initial GPS position
+            const entityNorth = document.createElement("a-box");
+            entityNorth.setAttribute("scale", {
+                x: 20, 
+                y: 20,
+                z: 20
             });
+            entityNorth.setAttribute('material', { color: 'yellow' } );
+            entityNorth.setAttribute('gps-new-entity-place', {
+                latitude: e.detail.position.latitude + 0.001,
+                longitude: e.detail.position.longitude
+            });
+            document.querySelector("a-scene").appendChild(entityNorth);
+
+
+            const entitySouth = document.createElement("a-box");
+            entitySouth.setAttribute("scale", {
+                x: 20, 
+                y: 20,
+                z: 20
+            });
+            entitySouth.setAttribute('material', { color: 'red' } );
+            entitySouth.setAttribute('gps-new-entity-place', {
+                latitude: e.detail.position.latitude - 0.001,
+                longitude: e.detail.position.longitude
+            });
+            document.querySelector("a-scene").appendChild(entitySouth);
+
+
+            const entityEast = document.createElement("a-box");
+            entityEast.setAttribute("scale", {
+                x: 20, 
+                y: 20,
+                z: 20
+            });
+            entityEast.setAttribute('material', { color: 'green' } );
+            entityEast.setAttribute('gps-new-entity-place', {
+                latitude: e.detail.position.latitude,
+                longitude: e.detail.position.longitude + 0.001
+            });
+            document.querySelector("a-scene").appendChild(entityEast);
+
+
+            const entityWest = document.createElement("a-box");
+            entityWest.setAttribute("scale", {
+                x: 20, 
+                y: 20,
+                z: 20
+            });
+            entityWest.setAttribute('material', { color: 'blue' } );
+            entityWest.setAttribute('gps-new-entity-place', {
+                latitude: 13.0061992,
+                longitude: 74.7957122
+            });
+            document.querySelector("a-scene").appendChild(entityWest);
         }
-        downloaded = true;
+        testEntityAdded = true;
     });
 };
