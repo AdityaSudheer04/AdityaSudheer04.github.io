@@ -51,14 +51,14 @@ window.onload = () => {
 
             const entityWest = document.createElement("a-box");
             entityWest.setAttribute("scale", {
-                x: 50, 
-                y: 50,
-                z: 50
+                x: 20, 
+                y: 20,
+                z: 20
             });
             entityWest.setAttribute('material', { color: 'blue' } );
             entityWest.setAttribute('gps-new-entity-place', {
-                latitude: 13.00599,
-                longitude: 74.79564
+                latitude: 13.006075,
+                longitude: 74.7956777
             });
             document.querySelector("a-scene").appendChild(entityWest);
         }
