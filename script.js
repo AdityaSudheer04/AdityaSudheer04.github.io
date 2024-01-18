@@ -51,9 +51,9 @@ window.onload = () => {
 
             const entityWest = document.createElement("a-box");
             entityWest.setAttribute("scale", {
-                x: 20, 
-                y: 20,
-                z: 20
+                x: 1, 
+                y: 1,
+                z: 1
             });
             entityWest.setAttribute('material', { color: 'blue' } );
             entityWest.setAttribute('gps-new-entity-place', {
