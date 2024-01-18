@@ -57,8 +57,8 @@ window.onload = () => {
             });
             entityWest.setAttribute('material', { color: 'blue' } );
             entityWest.setAttribute('gps-new-entity-place', {
-                latitude: 13.006075,
-                longitude: 74.7956777
+                latitude: 13.0061992,
+                longitude: 74.7957122
             });
             document.querySelector("a-scene").appendChild(entityWest);
         }
