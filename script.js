@@ -35,7 +35,7 @@ window.onload = () => {
                 longitude: e.detail.position.longitude
             });
             document.querySelector("a-scene").appendChild(entityNorth);
-            entityNorth.addEventListener('click', () => {
+            entityNorth.addEventListener('touch', () => {
                 console.log(1);
             })
 
@@ -51,6 +51,9 @@ window.onload = () => {
                 longitude: e.detail.position.longitude
             });
             document.querySelector("a-scene").appendChild(entitySouth);
+            entitySouth.addEventListener('touch', () => {
+                console.log(1);
+            })
 
 
             const entityEast = document.createElement("a-box");
@@ -65,6 +68,10 @@ window.onload = () => {
                 longitude: e.detail.position.longitude + 0.001
             });
             document.querySelector("a-scene").appendChild(entityEast);
+            entityEast.addEventListener('touch', () => {
+                console.log(1);
+            })
+            
 
 
             const entityWest = document.createElement("a-box");
@@ -79,6 +86,9 @@ window.onload = () => {
                 longitude: 74.7957122
             });
             document.querySelector("a-scene").appendChild(entityWest);
+            entityWest.addEventListener('touch', () => {
+                console.log(1);
+            })
         }
         testEntityAdded = true;
     });

@@ -8,20 +8,20 @@
 <script src="https://rawgit.com/nicolocarpignoli/nicolocarpignoli.github.io/master/ar-click-events/events.js"></script>
 </head>
 <body>
-<a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' renderer='antialias: true; alpha: true'>
+<a-scene cursor = 'rayOrigin: mouse' vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' renderer='antialias: true; alpha: true'>
     <a-camera gps-new-camera='gpsMinDistance: 5'></a-camera>
     <!-- <a-entity raycaster="objects: .clickable" cursor></a-entity> -->
-    <!-- <a-entity class="clickable" geometry="primitive: box" position="1 0 0"></a-entity> -->
-    <!-- <a-entity class="not-clickable" geometry="primitive: sphere" position="-1 0 0"></a-entity> -->
+    <!-- <a-entity class="clickable" geometry="primitive: box" position="1 0 0"></a-entity>
+    <a-entity class="not-clickable" geometry="primitive: sphere" position="-1 0 0"></a-entity> -->
     <!-- <a-entity camera look-controls>
         <a-entity cursor="fuse: true; fuseTimeout: 500"
                   position="0 0 -1"
                   geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-                  material="color: black; shader: flat">
+                  material="color: blue; shader: flat">
         </a-entity>
-      </a-entity>
+    </a-entity> -->
       
-      <a-entity id="box" cursor-listener geometry="primitive: box" material="color: white"></a-entity> -->
+      <!-- <a-entity id="box" cursor-listener geometry="primitive: box" material="color: white"></a-entity> -->
     <!-- <a-entity material='color: red' geometry='primitive: box' gps-new-entity-place="latitude: <your-lat>; longitude: <your-loon>" scale="10 10 10"></a-entity> -->
 </a-scene>
 <script src = "script.js"></script>
