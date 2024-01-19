@@ -36,7 +36,7 @@ window.onload = () => {
             });
             document.querySelector("a-scene").appendChild(entityNorth);
             entityNorth.addEventListener('click', () => {
-                console.log(1);
+                entityNorth.setAttribute('material', { color: 'black'});
             })
 
             const entitySouth = document.createElement("a-box");
