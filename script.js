@@ -35,7 +35,7 @@ window.onload = () => {
                 longitude: e.detail.position.longitude
             });
             document.querySelector("a-scene").appendChild(entityNorth);
-            entityNorth.addEventListener('touch', () => {
+            entityNorth.addEventListener('click', () => {
                 console.log(1);
             })
 
@@ -51,7 +51,7 @@ window.onload = () => {
                 longitude: e.detail.position.longitude
             });
             document.querySelector("a-scene").appendChild(entitySouth);
-            entitySouth.addEventListener('touch', () => {
+            entitySouth.addEventListener('click', () => {
                 console.log(1);
             })
 
@@ -68,7 +68,7 @@ window.onload = () => {
                 longitude: e.detail.position.longitude + 0.001
             });
             document.querySelector("a-scene").appendChild(entityEast);
-            entityEast.addEventListener('touch', () => {
+            entityEast.addEventListener('click', () => {
                 console.log(1);
             })
             
@@ -86,7 +86,7 @@ window.onload = () => {
                 longitude: 74.7957122
             });
             document.querySelector("a-scene").appendChild(entityWest);
-            entityWest.addEventListener('touch', () => {
+            entityWest.addEventListener('click', () => {
                 console.log(1);
             })
         }
