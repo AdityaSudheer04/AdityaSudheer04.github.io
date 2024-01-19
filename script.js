@@ -1,4 +1,20 @@
 window.onload = () => {
+    	
+    
+    
+    // AFRAME.registerComponent('cursor-listener', {
+    //     init: function () {
+    //       var lastIndex = -1;
+    //       var COLORS = ['red', 'green', 'blue'];
+    //       this.el.addEventListener('click', function (evt) {
+    //         lastIndex = (lastIndex + 1) % COLORS.length;
+    //         this.setAttribute('material', 'color', COLORS[lastIndex]);
+    //         console.log('I was clicked at: ', evt.detail.intersection.point);
+    //       });
+    //     }
+    // });
+    
+    
     let testEntityAdded = false;
 
     const el = document.querySelector("[gps-new-camera]");
@@ -19,7 +35,9 @@ window.onload = () => {
                 longitude: e.detail.position.longitude
             });
             document.querySelector("a-scene").appendChild(entityNorth);
-
+            entityNorth.addEventListener('click', () => {
+                console.log(1);
+            })
 
             const entitySouth = document.createElement("a-box");
             entitySouth.setAttribute("scale", {
