@@ -46,7 +46,7 @@ window.onload = () => {
                 placeName.setAttribute('z-offset', 1);  
                 placeName.setAttribute('x-offset', -0.5);  
                 placeName.setAttribute('color', 'black');  
-                setTimeout(() => {this.removeChild(placeName)}, 1000);
+                setTimeout(() => {this.removeChild(placeName)}, 1500);
                
             })
 
@@ -61,15 +61,16 @@ window.onload = () => {
                 latitude: e.detail.position.latitude - 0.001,
                 longitude: e.detail.position.longitude
             });
-            entitySouth.setAttribute('name', 'Red Box');
+            
             document.querySelector("a-scene").appendChild(entitySouth);
+            entitySouth.setAttribute('name', 'Red Box');
             entitySouth.addEventListener('click', function()  {
                 const placeName = document.createElement('a-text');
                 console.log(placeName);
                 this.appendChild(placeName)
                 placeName.setAttribute('value', this.getAttribute('name'));
-                placeName.setAttribute('z-offset', 1);  
-                placeName.setAttribute('x-offset', -0.5);  
+                placeName.setAttribute('z-offset', 1.2);  
+                // placeName.setAttribute('x-offset', -0.5);  
                 placeName.setAttribute('color', 'black');  
                 setTimeout(() => {this.removeChild(placeName)}, 1000);
             })
@@ -86,16 +87,17 @@ window.onload = () => {
                 latitude: e.detail.position.latitude,
                 longitude: e.detail.position.longitude + 0.001
             });
-            entityEast.setAttribute('name', 'Green Box');
+            
             document.querySelector("a-scene").appendChild(entityEast);
+            entityEast.setAttribute('name', 'Green Box');
             entityEast.addEventListener('click', function() {
                 
                 const placeName = document.createElement('a-text');
                 console.log(placeName);
                 this.appendChild(placeName);
                 placeName.setAttribute('value', this.getAttribute('name'));
-                placeName.setAttribute('z-offset', 1);  
-                placeName.setAttribute('x-offset', -0.5);  
+                placeName.setAttribute('z-offset', 1.1);  
+                // placeName.setAttribute('x-offset', -0.5);  
                 placeName.setAttribute('color', 'black');  
                 setTimeout(() => {this.removeChild(placeName)}, 1000);
             })
@@ -113,8 +115,9 @@ window.onload = () => {
                 latitude: 13.0061992,
                 longitude: 74.7957122
             });
-            entityWest.setAttribute('name', 'Blue Box');
+            
             document.querySelector("a-scene").appendChild(entityWest);
+            entityWest.setAttribute('name', 'Blue Box');
             entityWest.addEventListener('click', function() {
                 
                 const placeName = document.createElement('a-text');
