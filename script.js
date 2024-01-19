@@ -35,7 +35,7 @@ window.onload = () => {
                 longitude: e.detail.position.longitude
             });
             document.querySelector("a-scene").appendChild(entityNorth);
-            entityNorth.addEventListener('click', () => {
+            entityNorth.addEventListener('select', () => {
                 console.log(1);
             })
 
