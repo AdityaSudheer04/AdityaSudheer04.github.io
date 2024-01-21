@@ -1,5 +1,16 @@
 window.onload = () => {
     	
+    const tourGuideButton = document.getElementById('tour-guide-button');
+    tourGuideButton.addEventListener('click', function() {
+        const tourGuide = document.createElement('a-entity');
+        tourGuide.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
+        tourGuide.setAttribute('position', {
+            x: 0,
+            y: 0,
+            z: 5,
+        })
+
+    })
     
     let testEntityAdded = false;
 
@@ -57,6 +68,7 @@ window.onload = () => {
                     // Add event listener for click on the point of interest
                     poiEntity.addEventListener('click', () => {
                         textOverlay.innerHTML = `${node.children[1].attributes[1].value}`;
+
 
                         setTimeout(() => {
                             textOverlay.innerHTML = "";
