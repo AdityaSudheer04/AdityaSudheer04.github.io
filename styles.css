@@ -13,3 +13,9 @@
 {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+#tour-guide-button
+{
+    position: absolute;
+    right: 0;
+}
