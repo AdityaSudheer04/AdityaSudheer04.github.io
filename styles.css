@@ -1,6 +1,6 @@
 #overlay
 {
-    height: 20px;
+    height: 30px;
     width: 100%;
     position: relative;
     z-index: 9999;
@@ -12,5 +12,4 @@
 #text
 {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    
 }

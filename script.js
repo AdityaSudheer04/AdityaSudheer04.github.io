@@ -2,14 +2,15 @@ window.onload = () => {
     	
     const tourGuideButton = document.getElementById('tour-guide-button');
     tourGuideButton.addEventListener('click', function() {
-        document.querySelector('a-scene').appendChild(tourGuide);
+        
         const tourGuide = document.createElement('a-entity');
         tourGuide.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
         tourGuide.setAttribute('position', {
             x: 0,
             y: 0,
-            z: 2,
+            z: -2,
         })
+        document.querySelector('a-scene').appendChild(tourGuide);
         
         console.log(1);
 
