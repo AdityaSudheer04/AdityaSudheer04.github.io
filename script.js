@@ -60,7 +60,7 @@ window.onload = () => {
 
                         setTimeout(() => {
                             textOverlay.innerHTML = "";
-                        }, 1500);
+                        }, 3000);
                     });
                 });
             } catch (error) {
