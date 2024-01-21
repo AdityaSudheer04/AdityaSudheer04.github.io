@@ -50,7 +50,7 @@ window.onload = () => {
                     });
                     
                     
-                    // poiEntity.setAttribute("gltf-model", "url(./assets/models/map_pointer_3d_icon.glb)");
+                    poiEntity.setAttribute("gltf-model", "url(./assets/models/map_pointer_3d_icon.glb)");
                     // poiEntity.setAttribute('cursor-listener', ''); // Add the cursor listener for touch interaction
                     document.querySelector("a-scene").appendChild(poiEntity);
 
