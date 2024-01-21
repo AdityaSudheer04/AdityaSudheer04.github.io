@@ -7,93 +7,55 @@ window.onload = () => {
 
     
     const textOverlay = document.getElementById('overlay');
-    el.addEventListener("gps-camera-update-position", e => {
-        if(!testEntityAdded) {
-            
-            // document.querySelector("a-scene").appendChild(placeName);
-            
-            alert(`Got first GPS position: lon ${e.detail.position.longitude} lat ${e.detail.position.latitude}`);
-            // Add a box to the north of the initial GPS position
-            const entityNorth = document.createElement("a-box");
-            entityNorth.setAttribute("scale", {
-                x: 20, 
-                y: 20,
-                z: 20
-            });
-            entityNorth.setAttribute('material', { color: 'yellow' } );
-            entityNorth.setAttribute('gps-new-entity-place', {
-                latitude: e.detail.position.latitude + 0.001,
-                longitude: e.detail.position.longitude
-            });
-            document.querySelector("a-scene").appendChild(entityNorth);
-            entityNorth.setAttribute('name', 'Yellow Box')
-            entityNorth.addEventListener('click', function(){
-                textOverlay.innerHTML = this.getAttribute('name');
-                setTimeout(()=>{textOverlay.innerHTML = ""}, 1500);
-               
-            })
 
-            const entitySouth = document.createElement("a-box");
-            entitySouth.setAttribute("scale", {
-                x: 20, 
-                y: 20,
-                z: 20
-            });
-            entitySouth.setAttribute('material', { color: 'red' } );
-            entitySouth.setAttribute('gps-new-entity-place', {
-                latitude: e.detail.position.latitude - 0.001,
-                longitude: e.detail.position.longitude
-            });
-            
-            document.querySelector("a-scene").appendChild(entitySouth);
-            entitySouth.setAttribute('name', 'Red Box');
-            entitySouth.addEventListener('click', function()  {
-                textOverlay.innerHTML = this.getAttribute('name');
-                setTimeout(()=>{textOverlay.innerHTML = ""}, 1500);
-            })
+    el.addEventListener("gps-camera-update-position", async(e) => {
+        if (!testEntityAdded) {
+            try {
+                const latitude = e.detail.position.latitude;
+                const longitude = e.detail.position.longitude;
 
+                // Make API call to OSM to fetch nearby points of interest
+                const response = await fetch(`https://api.openstreetmap.org/api/0.6/map?bbox=${longitude - 0.01},${latitude - 0.01},${longitude + 0.01},${latitude + 0.01}`);
+                const data = await response.text();
 
-            const entityEast = document.createElement("a-box");
-            entityEast.setAttribute("scale", {
-                x: 20, 
-                y: 20,
-                z: 20
-            });
-            entityEast.setAttribute('material', { color: 'green' } );
-            entityEast.setAttribute('gps-new-entity-place', {
-                latitude: e.detail.position.latitude,
-                longitude: e.detail.position.longitude + 0.001
-            });
-            
-            document.querySelector("a-scene").appendChild(entityEast);
-            entityEast.setAttribute('name', 'Green Box');
-            entityEast.addEventListener('click', function() {
-                textOverlay.innerHTML = this.getAttribute('name');
-                setTimeout(()=>{textOverlay.innerHTML = ""}, 1500);
-            })
-            
+                // Parse the XML response from OSM
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(data, "text/xml");
 
+                // Extract points of interest from the OSM response
+                const nodes = xmlDoc.querySelectorAll('node');
+                nodes.forEach(node => {
+                    const poiLatitude = parseFloat(node.getAttribute('lat'));
+                    const poiLongitude = parseFloat(node.getAttribute('lon'));
 
-            const entityWest = document.createElement("a-box");
-            entityWest.setAttribute("scale", {
-                x: 1, 
-                y: 1,
-                z: 1
-            });
-            entityWest.setAttribute('material', { color: 'blue' } );
-            entityWest.setAttribute('gps-new-entity-place', {
-                latitude: 13.0061992,
-                longitude: 74.7957122
-            });
-            
-            document.querySelector("a-scene").appendChild(entityWest);
-            entityWest.setAttribute('name', 'Blue Box');
-            entityWest.addEventListener('click', function() {
-                textOverlay.innerHTML = this.getAttribute('name');
-                setTimeout(()=>{textOverlay.innerHTML = ""}, 1500);
-            })
-            
+                    // Create 3D models for each point of interest
+                    const poiEntity = document.createElement("a-entity");
+                    
+                     // Replace 'your_model.glb' with your actual model file
+                    poiEntity.setAttribute('gps-new-entity-place', {
+                        latitude: poiLatitude,
+                        longitude: poiLongitude
+                    });
+                    // console.log(poiEntity.getAttribute('gps-new-entity-place').poiLatitude);
+                    poiEntity.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
+                    poiEntity.setAttribute('cursor-listener', ''); // Add the cursor listener for touch interaction
+                    document.querySelector("a-scene").appendChild(poiEntity);
+
+                    // Add event listener for click on the point of interest
+                    poiEntity.addEventListener('click', function () {
+                        textOverlay.innerHTML = `${poiLatitude}, ${poiLongitude}`;
+                        setTimeout(() => {
+                            textOverlay.innerHTML = "";
+                        }, 1500);
+                    });
+                });
+            } catch (error) {
+                console.error("Error fetching and processing OSM data:", error);
+            }
+
+            testEntityAdded = true;
         }
-        testEntityAdded = true;
     });
 };
+
+
