@@ -25,7 +25,7 @@ window.onload = () => {
                 const targetTagAttribute = 'k';
                 const targetTagValue = 'name';
 
-                
+
                 const allNodes = xmlDoc.querySelectorAll('node');
 
                 // Filter nodes that contain a <tag> element with the specified attribute and value
@@ -49,14 +49,14 @@ window.onload = () => {
                         longitude: poiLongitude
                     });
                     
-                    poiEntity.setAttribute("gltf-model", "url(./assets/models/map_pointer_3d_icon.glb)");
+                    
+                    // poiEntity.setAttribute("gltf-model", "url(./assets/models/map_pointer_3d_icon.glb)");
                     // poiEntity.setAttribute('cursor-listener', ''); // Add the cursor listener for touch interaction
                     document.querySelector("a-scene").appendChild(poiEntity);
 
                     // Add event listener for click on the point of interest
-                    poiEntity.addEventListener('click', function () {
-                        textOverlay.innerHTML = `${poiLatitude}}, 
-                        ${poiLongitude}`;
+                    poiEntity.addEventListener('click', () => {
+                        textOverlay.innerHTML = `${node.children[1].attributes[1].value}`;
 
                         setTimeout(() => {
                             textOverlay.innerHTML = "";
@@ -68,6 +68,7 @@ window.onload = () => {
             }
 
             testEntityAdded = true;
+
         }
     });
 };

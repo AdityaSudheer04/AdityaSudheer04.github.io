@@ -5,5 +5,12 @@
     position: relative;
     z-index: 9999;
     display: flex;
+    background-color: rgba(200, 200, 200, 0.2);
     justify-content: center;
+}
+
+#text
+{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
 }
