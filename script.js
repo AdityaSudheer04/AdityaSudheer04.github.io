@@ -55,8 +55,8 @@ window.onload = () => {
 
                     // Add event listener for click on the point of interest
                     poiEntity.addEventListener('click', function () {
-                        textOverlay.innerHTML = `${this.getAttribute('gps-new-entity-place')[0]}, 
-                        ${this.getAttribute('gps-new-entity-place')[1]}`;
+                        textOverlay.innerHTML = `${poiLatitude}}, 
+                        ${poiLongitude}`;
 
                         setTimeout(() => {
                             textOverlay.innerHTML = "";
