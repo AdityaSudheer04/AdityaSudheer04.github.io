@@ -14,17 +14,18 @@ window.onload = () => {
                 const latitude = e.detail.position.latitude;
                 const longitude = e.detail.position.longitude;
 
-                // Make API call to OSM to fetch nearby points of interest
+                
                 const response = await fetch(`https://api.openstreetmap.org/api/0.6/map?bbox=${longitude - 0.01},${latitude - 0.01},${longitude + 0.01},${latitude + 0.01}`);
                 const data = await response.text();
 
                 // Parse the XML response from OSM
                 const parser = new DOMParser();
                 const xmlDoc = parser.parseFromString(data, "text/xml");
+
                 const targetTagAttribute = 'k';
                 const targetTagValue = 'name';
 
-                // Select nodes that contain a <tag> element with the specified attribute and value
+                
                 const allNodes = xmlDoc.querySelectorAll('node');
 
                 // Filter nodes that contain a <tag> element with the specified attribute and value
@@ -34,8 +35,7 @@ window.onload = () => {
                 });
 
                 console.log(nodesWithTargetTag);
-                // Extract points of interest from the OSM response
-                // const nodes = xmlDoc.querySelectorAll('node');
+                
                 nodesWithTargetTag.forEach(node => {
                     const poiLatitude = parseFloat(node.getAttribute('lat'));
                     const poiLongitude = parseFloat(node.getAttribute('lon'));
@@ -43,7 +43,7 @@ window.onload = () => {
                     // Create 3D models for each point of interest
                     const poiEntity = document.createElement("a-entity");
                     
-                     // Replace 'your_model.glb' with your actual model file
+                    
                     poiEntity.setAttribute('gps-new-entity-place', {
                         latitude: poiLatitude,
                         longitude: poiLongitude
@@ -55,7 +55,9 @@ window.onload = () => {
 
                     // Add event listener for click on the point of interest
                     poiEntity.addEventListener('click', function () {
-                        textOverlay.innerHTML = `${poiLatitude}, ${poiLongitude}`;
+                        textOverlay.innerHTML = `${this.getAttribute('gps-new-entity-place')[0]}, 
+                        ${this.getAttribute('gps-new-entity-place')[1]}`;
+
                         setTimeout(() => {
                             textOverlay.innerHTML = "";
                         }, 1500);
