@@ -21,10 +21,22 @@ window.onload = () => {
                 // Parse the XML response from OSM
                 const parser = new DOMParser();
                 const xmlDoc = parser.parseFromString(data, "text/xml");
+                const targetTagAttribute = 'k';
+                const targetTagValue = 'name';
 
+                // Select nodes that contain a <tag> element with the specified attribute and value
+                const allNodes = xmlDoc.querySelectorAll('node');
+
+                // Filter nodes that contain a <tag> element with the specified attribute and value
+                const nodesWithTargetTag = Array.from(allNodes).filter(node => {
+                const tags = node.querySelectorAll(`tag[${targetTagAttribute}="${targetTagValue}"]`);
+                return tags.length > 0;
+                });
+
+                console.log(nodesWithTargetTag);
                 // Extract points of interest from the OSM response
-                const nodes = xmlDoc.querySelectorAll('node');
-                nodes.forEach(node => {
+                // const nodes = xmlDoc.querySelectorAll('node');
+                nodesWithTargetTag.forEach(node => {
                     const poiLatitude = parseFloat(node.getAttribute('lat'));
                     const poiLongitude = parseFloat(node.getAttribute('lon'));
 
@@ -36,9 +48,9 @@ window.onload = () => {
                         latitude: poiLatitude,
                         longitude: poiLongitude
                     });
-                    // console.log(poiEntity.getAttribute('gps-new-entity-place').poiLatitude);
+                    
                     poiEntity.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
-                    poiEntity.setAttribute('cursor-listener', ''); // Add the cursor listener for touch interaction
+                    // poiEntity.setAttribute('cursor-listener', ''); // Add the cursor listener for touch interaction
                     document.querySelector("a-scene").appendChild(poiEntity);
 
                     // Add event listener for click on the point of interest
