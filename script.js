@@ -9,6 +9,8 @@ window.onload = () => {
             y: 0,
             z: 5,
         })
+        document.querySelector('a-scene').appendChild(tourGuide);
+        console.log(1);
 
     })
     
@@ -17,7 +19,7 @@ window.onload = () => {
     const el = document.querySelector("[gps-new-camera]");
 
     
-    const textOverlay = document.getElementById('overlay');
+    const textOverlay = document.getElementById('text');
 
     el.addEventListener("gps-camera-update-position", async(e) => {
         if (!testEntityAdded) {
