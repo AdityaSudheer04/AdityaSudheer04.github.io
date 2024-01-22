@@ -6,7 +6,7 @@ window.onload = () => {
 
     const tourGuide = document.createElement('a-entity');
     tourGuide.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
-    tourGuide.setAttribute('position', {x: 1, y: 2, z: 3});
+    tourGuide.object3D.position.set(1, 2, 3);
 
     console.log("Entity created");
 
