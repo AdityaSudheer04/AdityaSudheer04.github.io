@@ -2,19 +2,23 @@ window.onload = () => {
     	
     const tourGuideButton = document.getElementById('tour-guide-button');
     tourGuideButton.addEventListener('click', function() {
-        
-        const tourGuide = document.createElement('a-entity');
-        tourGuide.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
-        tourGuide.setAttribute('position', {
-            x: 0,
-            y: 0,
-            z: -2,
-        })
-        document.querySelector('a-scene').appendChild(tourGuide);
-        
-        console.log(1);
+    console.log("Button clicked");
 
-    })
+    const tourGuide = document.createElement('a-entity');
+    tourGuide.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
+    tourGuide.setAttribute('position', {
+        x: 1,
+        y: 1,
+        z: -3,
+    });
+
+    console.log("Entity created");
+
+    document.querySelector('a-scene').appendChild(tourGuide);
+
+    console.log("Entity appended to scene");
+});
+
     
     let testEntityAdded = false;
 
