@@ -1,19 +1,5 @@
 window.onload = () => {
     	
-    const tourGuideButton = document.getElementById('tour-guide-button');
-    tourGuideButton.addEventListener('click', function() {
-    console.log("Button clicked");
-
-    const tourGuide = document.createElement('a-entity');
-    tourGuide.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
-    tourGuide.object3D.position.set(1, 2, 3);
-
-    console.log("Entity created");
-
-    document.querySelector('a-scene').appendChild(tourGuide);
-    console.log(tourGuide);
-    console.log("Entity appended to scene");
-    });
 
     
     let testEntityAdded = false;
@@ -24,6 +10,23 @@ window.onload = () => {
     const textOverlay = document.getElementById('text');
 
     el.addEventListener("gps-camera-update-position", async(e) => {
+        const tourGuideButton = document.getElementById('tour-guide-button');
+        tourGuideButton.addEventListener('click', function() {
+        console.log("Button clicked");
+    
+        const tourGuide = document.createElement('a-entity');
+        tourGuide.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
+        tourGuide.setAttribute('gps-new-entity-place',{
+            latitude: e.detail.position.latitude,
+            longitude: e.detail.position.longitude + 0.00001
+        })
+    
+        console.log("Entity created");
+    
+        document.querySelector('a-scene').appendChild(tourGuide);
+        console.log(tourGuide);
+        console.log("Entity appended to scene");
+        });
         if (!testEntityAdded) {
             try {
                 const latitude = e.detail.position.latitude;
@@ -66,7 +69,7 @@ window.onload = () => {
                     
                     
                     poiEntity.setAttribute("gltf-model", "url(./assets/models/map_pointer_3d_icon.glb)");
-                    // poiEntity.setAttribute('cursor-listener', ''); // Add the cursor listener for touch interaction
+
                     document.querySelector("a-scene").appendChild(poiEntity);
 
                     // Add event listener for click on the point of interest
