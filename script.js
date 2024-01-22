@@ -1,6 +1,19 @@
 window.onload = () => {
     	
-    
+    const tourGuideButton = document.getElementById('tour-guide-button');
+    tourGuideButton.addEventListener('click', function() {
+    console.log("Button clicked");
+
+    const tourGuide = document.createElement('a-entity');
+    tourGuide.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
+    tourGuide.setAttribute('position', {x: 1, y: 2, z: 3});
+
+    console.log("Entity created");
+
+    document.querySelector('a-scene').appendChild(tourGuide);
+    console.log(tourGuide);
+    console.log("Entity appended to scene");
+    });
 
     
     let testEntityAdded = false;
@@ -11,24 +24,6 @@ window.onload = () => {
     const textOverlay = document.getElementById('text');
 
     el.addEventListener("gps-camera-update-position", async(e) => {
-        const tourGuideButton = document.getElementById('tour-guide-button');
-        tourGuideButton.addEventListener('click', function() {
-        console.log("Button clicked");
-    
-        const tourGuide = document.createElement('a-entity');
-        tourGuide.setAttribute("gltf-model", "url(./assets/models/map_pointer_3d_icon.glb)");
-        tourGuide.setAttribute('position', {
-            x: 1,
-            y: 1,
-            z: -3,
-        });
-    
-        console.log("Entity created");
-    
-        document.querySelector('a-scene').appendChild(tourGuide);
-        console.log(tourGuide);
-        console.log("Entity appended to scene");
-        });
         if (!testEntityAdded) {
             try {
                 const latitude = e.detail.position.latitude;
