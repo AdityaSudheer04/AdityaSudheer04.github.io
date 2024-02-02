@@ -3,6 +3,7 @@ window.onload = () => {
 
     
     let testEntityAdded = false;
+    let tourGuideAdded = false;
 
     const el = document.querySelector("[gps-new-camera]");
 
@@ -10,23 +11,34 @@ window.onload = () => {
     const textOverlay = document.getElementById('text');
 
     el.addEventListener("gps-camera-update-position", async(e) => {
-        const tourGuideButton = document.getElementById('tour-guide-button');
-        tourGuideButton.addEventListener('click', function() {
-        console.log("Button clicked");
-    
-        const tourGuide = document.createElement('a-entity');
-        tourGuide.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
-        tourGuide.setAttribute('gps-new-entity-place',{
-            latitude: e.detail.position.latitude,
-            longitude: e.detail.position.longitude + 0.00001
-        })
-    
-        console.log("Entity created");
-    
-        document.querySelector('a-scene').appendChild(tourGuide);
-        console.log(tourGuide);
-        console.log("Entity appended to scene");
-        });
+        if(!tourGuideAdded)
+        {
+            const tourGuideButton = document.getElementById('tour-guide-button');
+            tourGuideButton.addEventListener('click', function() {
+            console.log("Button clicked");
+        
+            const tourGuide = document.createElement('a-entity');
+            tourGuide.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
+            tourGuide.setAttribute('gps-new-entity-place',{
+                latitude: e.detail.position.latitude,
+                longitude: e.detail.position.longitude + 0.00001
+            })
+        
+            console.log("Entity created");
+        
+            document.querySelector('a-scene').appendChild(tourGuide);
+            tourGuideAdded = true;
+            console.log(tourGuide);
+            console.log("Entity appended to scene");
+            });
+
+            setInterval(function(){
+                document.querySelector('a-scene').removeChild(tourGuide);
+                tourGuideAdded = false;
+            }, 5000)
+        }
+
+
         if (!testEntityAdded) {
             try {
                 const latitude = e.detail.position.latitude;
