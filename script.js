@@ -35,7 +35,8 @@ window.onload = () => {
                 if(tourGuideAdded)
                 {
                     document.querySelector('a-scene').removeChild(tourGuide);
-                    tourGuide.destroy();
+                    tourGuide.removeAttribute('gps-new-entity-place');
+                    tourGuide.removeAttribute("gltf-model");
                 }
                 
                 tourGuideAdded = false;
