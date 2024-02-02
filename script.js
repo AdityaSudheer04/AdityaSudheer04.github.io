@@ -32,7 +32,7 @@ window.onload = () => {
             console.log("Entity appended to scene");
 
             setInterval(function(){
-                if(tourGuide)
+                if(tourGuideAdded)
                 {
                     document.querySelector('a-scene').removeChild(tourGuide);
                 }
