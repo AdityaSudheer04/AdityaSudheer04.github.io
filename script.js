@@ -35,6 +35,7 @@ window.onload = () => {
                 if(tourGuideAdded)
                 {
                     document.querySelector('a-scene').removeChild(tourGuide);
+                    tourGuide.destroy();
                 }
                 
                 tourGuideAdded = false;
