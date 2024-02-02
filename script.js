@@ -32,14 +32,14 @@ window.onload = () => {
             console.log("Entity appended to scene");
 
             setInterval(function(){
-                tourGuide.destroy();
+                tourGuide.parentNode.removeChild(tourGuide);
                 tourGuideAdded = false;
             }, 5000)
             });
 
             
         }
-
+        
 
         if (!testEntityAdded) {
             try {
