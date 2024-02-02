@@ -4,6 +4,8 @@ window.onload = () => {
     
     let testEntityAdded = false;
     let tourGuideAdded = false;
+    let tourGuide;
+
 
     const el = document.querySelector("[gps-new-camera]");
 
