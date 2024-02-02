@@ -19,16 +19,17 @@ window.onload = () => {
             tourGuideButton.addEventListener('click', function() {
             console.log("Button clicked");
         
-            const tourGuide = document.createElement('a-entity');
-            tourGuide.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
-            tourGuide.setAttribute('gps-new-entity-place',{
+            const newTourGuide = document.createElement('a-entity');
+            newTourGuide.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
+            newTourGuide.setAttribute('gps-new-entity-place', {
                 latitude: e.detail.position.latitude,
                 longitude: e.detail.position.longitude + 0.00001
-            })
-        
+            });
+
             console.log("Entity created");
-        
-            document.querySelector('a-scene').appendChild(tourGuide);
+
+            document.querySelector('a-scene').appendChild(newTourGuide);
+            tourGuide = newTourGuide;
             tourGuideAdded = true;
             console.log(tourGuide);
             console.log("Entity appended to scene");
