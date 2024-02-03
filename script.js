@@ -57,7 +57,7 @@ window.onload = () => {
             latitudeGuide = position.coords.latitude;
         })
         console.log("Button clicked");
-        
+        console.log(tourGuidePosition()[0]);
         tourGuide = document.createElement('a-entity');
         tourGuide.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
         tourGuide.setAttribute('gps-new-entity-place', {
