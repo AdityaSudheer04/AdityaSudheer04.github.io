@@ -38,11 +38,11 @@ window.onload = () => {
                 if(tourGuideAdded)
                 {
                     document.querySelector('a-scene').removeChild(tourGuide);
-                    tourGuide.removeAttribute('gps-new-entity-place');
+                    
                     console.log('removed');
                 }
                 
-                // tourGuideAdded = 0;
+                tourGuideAdded = 0;
             }, 5000)
             });
 
