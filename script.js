@@ -3,7 +3,7 @@ window.onload = () => {
 
     
     let testEntityAdded = false;
-    let tourGuideAdded = false;
+    let tourGuideAdded = 0;
     let tourGuide;
 
 
@@ -13,7 +13,7 @@ window.onload = () => {
     const textOverlay = document.getElementById('text');
 
     el.addEventListener("gps-camera-update-position", async(e) => {
-        if(!tourGuideAdded)
+        if(tourGuideAdded == 0)
         {
             const tourGuideButton = document.getElementById('tour-guide-button');
             tourGuideButton.addEventListener('click', function() {
@@ -30,7 +30,7 @@ window.onload = () => {
 
             document.querySelector('a-scene').appendChild(newTourGuide);
             tourGuide = newTourGuide;
-            tourGuideAdded = true;
+            tourGuideAdded += 1;
             console.log(tourGuide);
             console.log("Entity appended to scene");
 
@@ -43,7 +43,7 @@ window.onload = () => {
                     
                 }
                 
-                tourGuideAdded = false;
+                tourGuideAdded = 0;
             }, 5000)
             });
 
