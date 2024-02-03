@@ -13,6 +13,7 @@ window.onload = () => {
     const textOverlay = document.getElementById('text');
 
     el.addEventListener("gps-camera-update-position", async(e) => {
+        console.log(tourGuideAdded);
         if(tourGuideAdded == 0)
         {
             const tourGuideButton = document.getElementById('tour-guide-button');
@@ -33,7 +34,7 @@ window.onload = () => {
             tourGuideAdded += 1;
             console.log(tourGuide);
             console.log("Entity appended to scene");
-
+            console.log(tourGuideAdded);
             setTimeout(function(){
                 if(tourGuideAdded)
                 {
