@@ -32,7 +32,7 @@ window.onload = () => {
             currentPosition[0] + displacementLatitude,
             currentPosition[1] + displacementLongitude
         ];
-        console.log(guidePosition[0]);
+        
         return guidePosition;
     }
     
@@ -141,13 +141,13 @@ window.onload = () => {
                     document.querySelector("a-scene").appendChild(poiEntity);
 
                     // Add event listener for click on the point of interest
-                    poiEntity.addEventListener('click', function() {
+                    poiEntity.addEventListener('click', async function() {
                         textOverlay.innerHTML = `${node.children[1].attributes[1].value}`;
                         markerLatitude = this.getAttribute('gps-new-entity-place').latitude;
                         markerLongitude =this.getAttribute('gps-new-entity-place').longitude;
                         
 
-                        let tourGuideCoords = tourGuidePosition(markerLatitude,markerLongitude);
+                        let tourGuideCoords = await tourGuidePosition(markerLatitude,markerLongitude);
                         console.log(tourGuideCoords[0]);
                         tourGuideCCC(tourGuideCoords[0], tourGuideCoords[1]);
 
