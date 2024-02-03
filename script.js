@@ -21,15 +21,12 @@ window.onload = () => {
         
             const newTourGuide = document.createElement('a-entity');
             newTourGuide.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
-            newTourGuide.setAttribute('gps-new-entity-place', {
-                latitude: e.detail.position.latitude,
-                longitude: e.detail.position.longitude + 0.00001
-            });
+            newTourGuide.object3D.position.set(1,1,1);
 
             console.log("Entity created");
 
-                document.querySelector('a-scene').appendChild(newTourGuide);
-                tourGuide = newTourGuide;
+            document.querySelector('a-scene').appendChild(newTourGuide);
+            tourGuide = newTourGuide;
             tourGuideAdded = true;
             console.log(tourGuide);
             console.log("Entity appended to scene");
