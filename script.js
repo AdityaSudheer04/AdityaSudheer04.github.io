@@ -6,45 +6,83 @@ window.onload = () => {
     let tourGuideAdded = 0;
     let tourGuide;
 
+    let markerLatitude;
+    let markerLongitude;
+
+    function distance(pointA, pointB){
+        return Math.sqrt((pointA[0]-pointB[0])^2 + (pointA[1]-pointB[1])^2);
+    }
+
+    async function tourGuidePosition(poiLat, poiLon, displacementMeters = 2) {
+        let poiPosition = [poiLat, poiLon];
+        let currentPosition = await getCurrentPosition();
+    
+        let totalDistance = distance(poiPosition, currentPosition);
+        let directionVector = [(poiPosition[0] - currentPosition[0]), (poiPosition[1] - currentPosition[1])];
+    
+        // Normalize the direction vector
+        let normalizedDirection = [directionVector[0] / totalDistance, directionVector[1] / totalDistance];
+    
+        // Convert the displacement to latitude and longitude units
+        let displacementLatitude = (displacementMeters / 111111) * normalizedDirection[0];
+        let displacementLongitude = (displacementMeters / (111111 * Math.cos(currentPosition[0] * (Math.PI / 180)))) * normalizedDirection[1];
+    
+        // Calculate the guide position 2 meters away in the direction of the POI
+        let guidePosition = [
+            currentPosition[0] + displacementLatitude,
+            currentPosition[1] + displacementLongitude
+        ];
+    
+        return guidePosition;
+    }
+    
+    function getCurrentPosition() {
+        return new Promise((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(
+                (position) => resolve([position.coords.latitude, position.coords.longitude]),
+                (error) => reject(error)
+            );
+        });
+    }
 
     if(tourGuideAdded == 0)
     {
             
-            const tourGuideButton = document.getElementById('tour-guide-button');
-            let latitudeGuide;
-            let longitudeGuide;
-            tourGuideButton.addEventListener('click', function() {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                longitudeGuide = position.coords.longitude;
-                latitudeGuide = position.coords.latitude;
-            })
-            console.log("Button clicked");
+        const tourGuideButton = document.getElementById('tour-guide-button');
+        let latitudeGuide;
+        let longitudeGuide;
+        tourGuideButton.addEventListener('click', function() {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            longitudeGuide = position.coords.longitude;
+            latitudeGuide = position.coords.latitude;
+        })
+        console.log("Button clicked");
         
-            tourGuide = document.createElement('a-entity');
-            tourGuide.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
-            tourGuide.setAttribute('gps-new-entity-place', {
-                latitude: latitudeGuide,
-                longitude: longitudeGuide + 0.00001
-            });
+        tourGuide = document.createElement('a-entity');
+        tourGuide.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
+        tourGuide.setAttribute('gps-new-entity-place', {
+            latitude: tourGuidePosition()[0],
+            longitude: tourGuidePosition()[1]
+        });
 
-            console.log("Entity created");
+        console.log("Entity created");
 
-            document.querySelector('a-scene').appendChild(tourGuide);
-            tourGuideAdded += 1;
-            console.log(tourGuide);
-            console.log("Entity appended to scene");
-            console.log(tourGuideAdded);
-            setTimeout(function(){
-                if(tourGuideAdded)
-                {
-                    document.querySelector('a-scene').removeChild(tourGuide);
+        document.querySelector('a-scene').appendChild(tourGuide);
+        tourGuideAdded += 1;
+        console.log(tourGuide);
+        console.log("Entity appended to scene");
+        console.log(tourGuideAdded);
+        setTimeout(function(){
+            if(tourGuideAdded)
+            {
+                document.querySelector('a-scene').removeChild(tourGuide);
                     
-                    console.log('removed');
-                }
+                console.log('removed');
+            }
                 
-                tourGuideAdded = 0;
-            }, 10000)
-            });
+            tourGuideAdded = 0;
+        }, 10000)
+        });
 
             
     }
@@ -102,9 +140,12 @@ window.onload = () => {
                     document.querySelector("a-scene").appendChild(poiEntity);
 
                     // Add event listener for click on the point of interest
-                    poiEntity.addEventListener('click', () => {
+                    poiEntity.addEventListener('click', function() {
                         textOverlay.innerHTML = `${node.children[1].attributes[1].value}`;
+                        markerLatitude = this.latitude;
+                        markerLongitude = this.longitude;
 
+                        tourGuidePosition(markerLatitude,markerLongitude);
 
                         setTimeout(() => {
                             textOverlay.innerHTML = "";
