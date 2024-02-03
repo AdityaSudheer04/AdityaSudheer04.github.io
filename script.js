@@ -145,9 +145,10 @@ window.onload = () => {
                         textOverlay.innerHTML = `${node.children[1].attributes[1].value}`;
                         markerLatitude = this.getAttribute('gps-new-entity-place').latitude;
                         markerLongitude =this.getAttribute('gps-new-entity-place').longitude;
-                        console.log(markerLatitude);
+                        
 
                         let tourGuideCoords = tourGuidePosition(markerLatitude,markerLongitude);
+                        console.log(tourGuideCoords[0]);
                         tourGuideCCC(tourGuideCoords[0], tourGuideCoords[1]);
 
 
