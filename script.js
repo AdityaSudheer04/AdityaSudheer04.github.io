@@ -43,7 +43,7 @@ window.onload = () => {
                     console.log('removed');
                 }
                 
-                tourGuideAdded = 0;
+                // tourGuideAdded = 0;
             }, 5000)
             });
 
