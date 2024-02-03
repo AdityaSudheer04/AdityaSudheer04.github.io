@@ -43,7 +43,7 @@ window.onload = () => {
                 }
                 
                 tourGuideAdded = 0;
-            }, 5000)
+            }, 10000)
             });
 
             
