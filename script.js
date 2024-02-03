@@ -40,7 +40,7 @@ window.onload = () => {
                     document.querySelector('a-scene').removeChild(tourGuide);
                     document.querySelector('a-scene').removeChild(newTourGuide);
                     tourGuide.removeAttribute('gps-new-entity-place');
-                    
+                    console.log('removed');
                 }
                 
                 tourGuideAdded = 0;
