@@ -21,7 +21,10 @@ window.onload = () => {
         
             const newTourGuide = document.createElement('a-entity');
             newTourGuide.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
-            newTourGuide.object3D.position.set(1,1,1);
+            newTourGuide.setAttribute('gps-new-entity-place', {
+                latitude: e.detail.position.latitude,
+                longitude: e.detail.position.longitude + 0.00001
+            });
 
             console.log("Entity created");
 
