@@ -7,30 +7,22 @@ window.onload = () => {
     let tourGuide;
 
 
-    const el = document.querySelector("[gps-new-camera]");
-
-    
-    const textOverlay = document.getElementById('text');
-
-    el.addEventListener("gps-camera-update-position", async(e) => {
-        console.log(tourGuideAdded);
-        if(tourGuideAdded == 0)
-        {
+    if(tourGuideAdded == 0)
+    {
             const tourGuideButton = document.getElementById('tour-guide-button');
             tourGuideButton.addEventListener('click', function() {
             console.log("Button clicked");
         
-            const newTourGuide = document.createElement('a-entity');
-            newTourGuide.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
-            newTourGuide.setAttribute('gps-new-entity-place', {
+            tourGuide = document.createElement('a-entity');
+            tourGuide.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
+            tourGuide.setAttribute('gps-new-entity-place', {
                 latitude: e.detail.position.latitude,
                 longitude: e.detail.position.longitude + 0.00001
             });
 
             console.log("Entity created");
 
-            document.querySelector('a-scene').appendChild(newTourGuide);
-            tourGuide = newTourGuide;
+            document.querySelector('a-scene').appendChild(tourGuide);
             tourGuideAdded += 1;
             console.log(tourGuide);
             console.log("Entity appended to scene");
@@ -39,7 +31,6 @@ window.onload = () => {
                 if(tourGuideAdded)
                 {
                     document.querySelector('a-scene').removeChild(tourGuide);
-                    document.querySelector('a-scene').removeChild(newTourGuide);
                     tourGuide.removeAttribute('gps-new-entity-place');
                     console.log('removed');
                 }
@@ -49,9 +40,15 @@ window.onload = () => {
             });
 
             
-        }
-        
+    }
 
+
+    const el = document.querySelector("[gps-new-camera]");
+
+    
+    const textOverlay = document.getElementById('text');
+
+    el.addEventListener("gps-camera-update-position", async(e) => {
         if (!testEntityAdded) {
             try {
                 const latitude = e.detail.position.latitude;
