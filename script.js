@@ -147,6 +147,7 @@ window.onload = () => {
                         markerLongitude = this.longitude;
 
                         let tourGuideCoords = tourGuidePosition(markerLatitude,markerLongitude);
+                        console.log(tourGuideCoords);
                         tourGuideCCC(tourGuideCoords[0], tourGuideCoords[1]);
 
 
