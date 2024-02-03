@@ -45,7 +45,7 @@ window.onload = () => {
         });
     }
     
-    function tourGuide(lat, lon){
+    function tourGuideCCC(lat, lon){
         if(tourGuideAdded == 0)
         {
                 
@@ -147,7 +147,7 @@ window.onload = () => {
                         markerLongitude = this.longitude;
 
                         let tourGuideCoords = tourGuidePosition(markerLatitude,markerLongitude);
-                        tourGuide(tourGuideCoords[0], tourGuideCoords[1]);
+                        tourGuideCCC(tourGuideCoords[0], tourGuideCoords[1]);
 
 
                         setTimeout(() => {
