@@ -143,11 +143,11 @@ window.onload = () => {
                     // Add event listener for click on the point of interest
                     poiEntity.addEventListener('click', function() {
                         textOverlay.innerHTML = `${node.children[1].attributes[1].value}`;
-                        markerLatitude = this.latitude;
+                        markerLatitude = this.getAttribute('gps-new-entity-place')[0];
                         markerLongitude = this.longitude;
+                        console.log(markerLatitude);
 
                         let tourGuideCoords = tourGuidePosition(markerLatitude,markerLongitude);
-                        console.log(tourGuideCoords[0]);
                         tourGuideCCC(tourGuideCoords[0], tourGuideCoords[1]);
 
 
