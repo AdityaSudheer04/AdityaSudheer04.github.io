@@ -20,7 +20,7 @@ window.onload = () => {
         let totalDistance = distance(poiPosition, currentPosition);
         let directionVector = [(poiPosition[0] - currentPosition[0]), (poiPosition[1] - currentPosition[1])];
     
-        // Normalize the direction vector
+        console.log(1)
         let normalizedDirection = [directionVector[0] / totalDistance, directionVector[1] / totalDistance];
     
         // Convert the displacement to latitude and longitude units
