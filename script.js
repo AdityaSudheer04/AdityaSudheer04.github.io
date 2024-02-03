@@ -9,15 +9,22 @@ window.onload = () => {
 
     if(tourGuideAdded == 0)
     {
+            
             const tourGuideButton = document.getElementById('tour-guide-button');
+            let latitudeGuide;
+            let longitudeGuide;
             tourGuideButton.addEventListener('click', function() {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                longitudeGuide = position.coords.longitude;
+                latitudeGuide = position.coords.latitude;
+            })
             console.log("Button clicked");
         
             tourGuide = document.createElement('a-entity');
             tourGuide.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
             tourGuide.setAttribute('gps-new-entity-place', {
-                latitude: e.detail.position.latitude,
-                longitude: e.detail.position.longitude + 0.00001
+                latitude: latitudeGuide,
+                longitude: longitudeGuide + 0.00001
             });
 
             console.log("Entity created");
