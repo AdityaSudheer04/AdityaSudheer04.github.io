@@ -53,36 +53,36 @@ window.onload = () => {
             let latitudeGuide;
             let longitudeGuide;
             tourGuideButton.addEventListener('click', function() {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                longitudeGuide = position.coords.longitude;
-                latitudeGuide = position.coords.latitude;
-            })
-            console.log("Button clicked");
-            console.log(lat);
-            tourGuide = document.createElement('a-entity');
-            tourGuide.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
-            tourGuide.setAttribute('gps-new-entity-place', {
-                latitude: lat,
-                longitude: lon
-            });
+            // navigator.geolocation.getCurrentPosition(function(position) {
+            //     longitudeGuide = position.coords.longitude;
+            //     latitudeGuide = position.coords.latitude;
+            // })
+            // console.log("Button clicked");
+            // console.log(lat);
+            // tourGuide = document.createElement('a-entity');
+            // tourGuide.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
+            // tourGuide.setAttribute('gps-new-entity-place', {
+            //     latitude: lat,
+            //     longitude: lon
+            // });
 
-            console.log("Entity created");
+            // console.log("Entity created");
 
-            document.querySelector('a-scene').appendChild(tourGuide);
-            tourGuideAdded += 1;
-            console.log(tourGuide);
-            console.log("Entity appended to scene");
-            console.log(tourGuideAdded);
-            setTimeout(function(){
-                if(tourGuideAdded)
-                {
-                    document.querySelector('a-scene').removeChild(tourGuide);
+            // document.querySelector('a-scene').appendChild(tourGuide);
+            // tourGuideAdded += 1;
+            // console.log(tourGuide);
+            // console.log("Entity appended to scene");
+            // console.log(tourGuideAdded);
+            // setTimeout(function(){
+            //     if(tourGuideAdded)
+            //     {
+            //         document.querySelector('a-scene').removeChild(tourGuide);
                         
-                    console.log('removed');
-                }
+            //         console.log('removed');
+            //     }
                     
-                tourGuideAdded = 0;
-            }, 10000)
+            //     tourGuideAdded = 0;
+            // }, 10000)
             });
 
                 
@@ -149,7 +149,39 @@ window.onload = () => {
 
                         let tourGuideCoords = await tourGuidePosition(markerLatitude,markerLongitude);
                         console.log(tourGuideCoords[0]);
-                        tourGuideCCC(tourGuideCoords[0], tourGuideCoords[1]);
+                        // tourGuideCCC(tourGuideCoords[0], tourGuideCoords[1]);
+                        let latitudeGuide;
+                        let longitudeGuide;
+                        navigator.geolocation.getCurrentPosition(function(position) {
+                            longitudeGuide = position.coords.longitude;
+                            latitudeGuide = position.coords.latitude;
+                        })
+                        console.log("Button clicked");
+                        console.log(tourGuideCoords[0]);
+                        tourGuide = document.createElement('a-entity');
+                        tourGuide.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
+                        tourGuide.setAttribute('gps-new-entity-place', {
+                            latitude: tourGuideCoords[0],
+                            longitude: tourGuideCoords[1]
+                        });
+            
+                        console.log("Entity created");
+            
+                        document.querySelector('a-scene').appendChild(tourGuide);
+                        tourGuideAdded += 1;
+                        console.log(tourGuide);
+                        console.log("Entity appended to scene");
+                        console.log(tourGuideAdded);
+                        setTimeout(function(){
+                            if(tourGuideAdded)
+                            {
+                                document.querySelector('a-scene').removeChild(tourGuide);
+                                    
+                                console.log('removed');
+                            }
+                                
+                            tourGuideAdded = 0;
+                        }, 10000)
 
 
                         setTimeout(() => {
