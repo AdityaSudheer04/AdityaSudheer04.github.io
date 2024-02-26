@@ -46,7 +46,7 @@ window.onload = () => {
     }
     
     function tourGuideCCC(lat, lon){
-        if(tourGuideAdded == 0)
+        if(tourGuideAdded === 0)
         {
                 
             const tourGuideButton = document.getElementById('tour-guide-button');
