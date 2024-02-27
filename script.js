@@ -141,8 +141,46 @@ window.onload = () => {
                     document.querySelector("a-scene").appendChild(poiEntity);
 
                     // Add event listener for click on the point of interest
+                    function processTags(node) {
+                        if (node.nodeName === "tag") {
+                            let name;
+                            Array.from(node.attributes).forEach(attribute => {
+                                if (attribute.nodeName === "k" && attribute.nodeValue === "name") {
+                                    name = node.getAttribute("v");
+                                }
+                            });
+                            if (name) {
+                                textOverlay.innerHTML = name;
+                            }
+                        } else if (node.childNodes) {
+                            node.childNodes.forEach(childNode => {
+                                processTags(childNode);
+                            });
+                        }
+                    }
+
+                    function processInformationTags(node) {
+                        if (node.nodeName === "tag") {
+                            let info;
+                            Array.from(node.attributes).forEach(attribute => {
+                                if (attribute.nodeName === "k" && attribute.nodeValue === "information") {
+                                    info = node.getAttribute("v");
+                                }
+                            });
+                            if (info) {
+                                setTimeout(() => { textOverlay.innerHTML = info; }, 3001);
+                                setTimeout(() => {  textOverlay.innerHTML = "";}, 8000);
+                                
+                            }
+                        }
+                    }
+                    
+                    
                     poiEntity.addEventListener('click', async function() {
-                        textOverlay.innerHTML = `${node.children[1].attributes[1].value}`;
+                        node.childNodes.forEach(childNode => {
+                            processTags(childNode);
+                            processInformationTags(childNode);
+                        });
                         markerLatitude = this.getAttribute('gps-new-entity-place').latitude;
                         markerLongitude =this.getAttribute('gps-new-entity-place').longitude;
                         
