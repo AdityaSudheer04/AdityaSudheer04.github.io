@@ -201,7 +201,7 @@ window.onload = () => {
                             console.log("Button clicked");
                             console.log(tourGuideCoords[0]);
                             tourGuide = document.createElement('a-entity');
-                            tourGuide.setAttribute("gltf-model", "url(./assets/models/man_in _coat_character.glb)");
+                            tourGuide.setAttribute("gltf-model", "url(./assets/models/man_in_coat_character.glb)");
                             tourGuide.setAttribute('gps-new-entity-place', {
                                 latitude: tourGuideCoords[0],
                                 longitude: tourGuideCoords[1]
