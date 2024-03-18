@@ -127,12 +127,14 @@ window.onload = () => {
                             if (info) {
                                 setTimeout(() => { textOverlay.innerHTML = info; }, 3001);
                                 setTimeout(() => {  textOverlay.innerHTML = "";}, 8000);
+                                console.log("speak");
+                                
+                                let speech = new SpeechSynthesisUtterance(info);
+                                window.speechSynthesis.speak(speech);
                                 
                             }
 
-                            let text = info.value;
-                            let speech = new SpeechSynthesisUtterance(text);
-                            window.speechSynthesis.speak(speech);
+                            
                         }
                     }
                     
