@@ -93,7 +93,7 @@ window.onload = () => {
                     });
                     
                     
-                    poiEntity.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
+                    poiEntity.setAttribute("gltf-model", "url(./assets/models/map_pointer_3d_icon.glb)");
 
                     document.querySelector("a-scene").appendChild(poiEntity);
 
@@ -164,7 +164,7 @@ window.onload = () => {
                             console.log("Button clicked");
                             console.log(tourGuideCoords[0]);
                             tourGuide = document.createElement('a-entity');
-                            tourGuide.setAttribute("gltf-model", "url(./assets/models/man_in_coat_character.glb)");
+                            tourGuide.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
                             tourGuide.setAttribute('gps-new-entity-place', {
                                 latitude: tourGuideCoords[0],
                                 longitude: tourGuideCoords[1]
