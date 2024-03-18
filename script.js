@@ -13,7 +13,7 @@ window.onload = () => {
         return Math.sqrt((pointA[0]-pointB[0])^2 + (pointA[1]-pointB[1])^2);
     }
 
-    async function tourGuidePosition(poiLat, poiLon, displacementMeters = 2) {
+    async function tourGuidePosition(poiLat, poiLon, displacementMeters = 5) {
         let poiPosition = [poiLat, poiLon];
         let currentPosition = await getCurrentPosition();
     
@@ -45,50 +45,7 @@ window.onload = () => {
         });
     }
     
-    function tourGuideCCC(lat, lon){
-        if(tourGuideAdded === 0)
-        {
-                
-            const tourGuideButton = document.getElementById('tour-guide-button');
-            let latitudeGuide;
-            let longitudeGuide;
-            tourGuideButton.addEventListener('click', function() {
-            // navigator.geolocation.getCurrentPosition(function(position) {
-            //     longitudeGuide = position.coords.longitude;
-            //     latitudeGuide = position.coords.latitude;
-            // })
-            // console.log("Button clicked");
-            // console.log(lat);
-            // tourGuide = document.createElement('a-entity');
-            // tourGuide.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
-            // tourGuide.setAttribute('gps-new-entity-place', {
-            //     latitude: lat,
-            //     longitude: lon
-            // });
-
-            // console.log("Entity created");
-
-            // document.querySelector('a-scene').appendChild(tourGuide);
-            // tourGuideAdded += 1;
-            // console.log(tourGuide);
-            // console.log("Entity appended to scene");
-            // console.log(tourGuideAdded);
-            // setTimeout(function(){
-            //     if(tourGuideAdded)
-            //     {
-            //         document.querySelector('a-scene').removeChild(tourGuide);
-                        
-            //         console.log('removed');
-            //     }
-                    
-            //     tourGuideAdded = 0;
-            // }, 10000)
-            });
-
-                
-        }
-
-    }
+   
     const el = document.querySelector("[gps-new-camera]");
 
     
@@ -136,7 +93,7 @@ window.onload = () => {
                     });
                     
                     
-                    poiEntity.setAttribute("gltf-model", "url(./assets/models/map_pointer_3d_icon.glb)");
+                    poiEntity.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
 
                     document.querySelector("a-scene").appendChild(poiEntity);
 
@@ -172,6 +129,10 @@ window.onload = () => {
                                 setTimeout(() => {  textOverlay.innerHTML = "";}, 8000);
                                 
                             }
+
+                            let text = info.value;
+                            let speech = new SpeechSynthesisUtterance(text);
+                            window.speechSynthesis.speak(speech);
                         }
                     }
                     
@@ -180,9 +141,11 @@ window.onload = () => {
                         node.childNodes.forEach(childNode => {
                             processTags(childNode);
                             processInformationTags(childNode);
+
                         });
                         markerLatitude = this.getAttribute('gps-new-entity-place').latitude;
                         markerLongitude =this.getAttribute('gps-new-entity-place').longitude;
+                        
                         
 
                         let tourGuideCoords = await tourGuidePosition(markerLatitude,markerLongitude);
