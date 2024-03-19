@@ -146,10 +146,10 @@ window.onload = () => {
                         
                     }
                     
-                    
+                    spoke = 0;
                     poiEntity.addEventListener('click', async function() {
                         let text = "";
-                        spoke = 0;
+                        
                         node.childNodes.forEach(childNode => {
                             processTags(childNode);
                             console.log(spoke);
