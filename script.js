@@ -183,7 +183,7 @@ window.onload = () => {
                             console.log("Button clicked");
                             console.log(tourGuideCoords[0]);
                             tourGuide = document.createElement('a-gltf-model');
-                            tourGuide.setAttribute("src", "./assets/models/man.glb");
+                            tourGuide.setAttribute("src", "./assets/models/man_one.glb");
                             tourGuide.setAttribute('gps-new-entity-place', {
                                 latitude: tourGuideCoords[0],
                                 longitude: tourGuideCoords[1]
