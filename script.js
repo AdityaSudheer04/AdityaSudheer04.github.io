@@ -164,7 +164,7 @@ window.onload = () => {
 
                         });
                         
-                        spoke -= 1;
+                        
                         console.log(text);
                          
                         if(text){
