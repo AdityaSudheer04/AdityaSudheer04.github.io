@@ -150,6 +150,7 @@ window.onload = () => {
                     poiEntity.addEventListener('click', async function() {
                         let text = "";
                         
+                        if(spoke === 0){
                         node.childNodes.forEach(childNode => {
                             processTags(childNode);
                             console.log(spoke);
@@ -160,14 +161,15 @@ window.onload = () => {
 
                             if(text){
                                 console.log(text);
-                                if(spoke === 0){
+                                
                                     spoke+=1;
                                     let speech = new SpeechSynthesisUtterance(text);
                                     window.speechSynthesis.speak(speech);
-                                }
+                                
                             }
 
                         });
+                        }
 
                         console.log(text);
                          
