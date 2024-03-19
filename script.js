@@ -120,10 +120,10 @@ window.onload = () => {
                     }
 
                     function processInformationTags(node) {
-                        
+                        let info;
                         if (node.nodeName === "tag") {
                             
-                            let info;
+                            
                             Array.from(node.attributes).forEach(attribute => {
                                 if (attribute.nodeName === "k" && attribute.nodeValue === "information") {
                                     console.log("info set");
@@ -136,10 +136,11 @@ window.onload = () => {
                                 setTimeout(() => { textOverlay.innerHTML = info; }, 3001);
                                 setTimeout(() => {  textOverlay.innerHTML = "";}, 8000);
                                 console.log("speak");
-                                return info;
+                                
                                   
                             }
                         }
+                        return info;
                         
                     }
                     
