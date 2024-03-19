@@ -140,24 +140,25 @@ window.onload = () => {
                     poiEntity.addEventListener('click', async function() {
                         node.childNodes.forEach(childNode => {
                             processTags(childNode);
-                            if (childNode.nodeName === "tag" && spoke == 0) {
+                            console.log(spoke);
+                            // if (childNode.nodeName === "tag" && spoke == 0) {
                                 
-                                let info;
-                                Array.from(childNode.attributes).forEach(attribute => {
-                                    if (attribute.nodeName === "k" && attribute.nodeValue === "information") {
-                                        info = childNode.getAttribute("v");
-                                    }
-                                });
-                                if (info) {
-                                    setTimeout(() => { textOverlay.innerHTML = info; }, 3001);
-                                    setTimeout(() => {  textOverlay.innerHTML = "";}, 8000);
-                                    console.log("speak");
+                            //     let info;
+                            //     Array.from(childNode.attributes).forEach(attribute => {
+                            //         if (attribute.nodeName === "k" && attribute.nodeValue === "information") {
+                            //             info = childNode.getAttribute("v");
+                            //         }
+                            //     });
+                            //     if (info) {
+                            //         setTimeout(() => { textOverlay.innerHTML = info; }, 3001);
+                            //         setTimeout(() => {  textOverlay.innerHTML = "";}, 8000);
+                            //         console.log("speak");
                                     
-                                    let speech = new SpeechSynthesisUtterance(info);
-                                    window.speechSynthesis.speak(speech);   
-                                }
-                                spoke += 1;
-                            }
+                            //         let speech = new SpeechSynthesisUtterance(info);
+                            //         window.speechSynthesis.speak(speech);   
+                            //     }
+                            //     spoke += 1;
+                            // }
 
                         });
                         markerLatitude = this.getAttribute('gps-new-entity-place').latitude;
@@ -195,16 +196,17 @@ window.onload = () => {
                                 // }
                             });
                             // Get reference to the model element
-                            // const tourGuide = document.querySelector('a-gltf-model');
+                            console.log(83);
+                            const model = document.querySelector('a-gltf-model');
 
-                            // Pause all animations
-                            tourGuide.components['animation-mixer'].pause();
+// Pause all animations
+                            model.components['animation-mixer'].pause();
 
                             // Resume all animations
-                            tourGuide.components['animation-mixer'].play();
+                            model.components['animation-mixer'].play();
 
                             // Stop all animations
-                            tourGuide.components['animation-mixer'].stop();
+                            model.components['animation-mixer'].stop();
                 
                             document.querySelector('a-scene').appendChild(tourGuide);
                             tourGuideAdded += 1;
