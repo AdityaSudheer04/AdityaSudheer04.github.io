@@ -29,6 +29,7 @@ window.onload = () => {
         let displacementLongitude = (displacementMeters / (111111 * Math.cos(currentPosition[0] * (Math.PI / 180)))) * normalizedDirection[1];
     
         // Calculate the guide position 2 meters away in the direction of the POI
+        console.log(displacementLatitude);
         let guidePosition = [
             currentPosition[0] + displacementLatitude,
             currentPosition[1] + displacementLongitude
@@ -158,7 +159,7 @@ window.onload = () => {
                             //     console.log("voice");
                             // }
                             processInformationTags(childNode, spoke);
-                            
+                            spoke += 1;
 
                         });
                         console.log(2);
