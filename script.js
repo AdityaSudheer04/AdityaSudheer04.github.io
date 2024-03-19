@@ -161,7 +161,7 @@ window.onload = () => {
 
                         });
 
-                        let speech = new SpeechSynthesisUtterance(info);
+                        let speech = new SpeechSynthesisUtterance(text);
                         window.speechSynthesis.speak(speech); 
 
                         console.log(2);
