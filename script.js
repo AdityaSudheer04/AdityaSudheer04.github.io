@@ -5,6 +5,7 @@ window.onload = () => {
     let testEntityAdded = false;
     let tourGuideAdded = 0;
     let tourGuide;
+    let spoke = 0;
 
     let markerLatitude;
     let markerLongitude;
@@ -139,7 +140,8 @@ window.onload = () => {
                     poiEntity.addEventListener('click', async function() {
                         node.childNodes.forEach(childNode => {
                             processTags(childNode);
-                            if (childNode.nodeName === "tag") {
+                            if (childNode.nodeName === "tag" && spoke === 0) {
+                                spoke++;
                                 let info;
                                 Array.from(childNode.attributes).forEach(attribute => {
                                     if (attribute.nodeName === "k" && attribute.nodeValue === "information") {
@@ -178,7 +180,7 @@ window.onload = () => {
                             console.log("Button clicked");
                             console.log(tourGuideCoords[0]);
                             tourGuide = document.createElement('a-gltf-model');
-                            tourGuide.setAttribute("src", "./assets/models/male_character_3.glb");
+                            tourGuide.setAttribute("src", "./assets/models/man.glb");
                             tourGuide.setAttribute('gps-new-entity-place', {
                                 latitude: tourGuideCoords[0],
                                 longitude: tourGuideCoords[1]
