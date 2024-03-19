@@ -165,13 +165,15 @@ window.onload = () => {
                             })
                             console.log("Button clicked");
                             console.log(tourGuideCoords[0]);
-                            tourGuide = document.createElement('a-entity');
-                            tourGuide.setAttribute("gltf-model", "url(./assets/models/koala.glb)");
+                            tourGuide = document.createElement('a-gltf-model');
+                            tourGuide.setAttribute("src", "./assets/models/male_character_3.glb");
                             tourGuide.setAttribute('gps-new-entity-place', {
                                 latitude: tourGuideCoords[0],
                                 longitude: tourGuideCoords[1]
                             });
-                
+                            tourGuide.addEventListener('model-loaded', () => {
+                                // Do nothing here to keep the model static
+                            });
                             console.log("Entity created");
                 
                             document.querySelector('a-scene').appendChild(tourGuide);
