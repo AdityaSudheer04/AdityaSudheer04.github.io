@@ -146,7 +146,7 @@ window.onload = () => {
                         
                     }
                     
-                    spoke = 0;
+                    
                     poiEntity.addEventListener('click', async function() {
                         let text = "";
                         
