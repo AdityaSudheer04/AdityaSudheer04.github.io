@@ -31,8 +31,8 @@ window.onload = () => {
         // Calculate the guide position 2 meters away in the direction of the POI
         console.log(displacementLatitude);
         let guidePosition = [
-            currentPosition[0] + 0.000001,
-            currentPosition[1] + 0.000001
+            currentPosition[0] + 0.00001,
+            currentPosition[1] + 0.00001
         ];
         console.log(currentPosition[0]);
         console.log(guidePosition[0]);
@@ -161,10 +161,11 @@ window.onload = () => {
 
                         });
 
+                        console.log(text);
                         let speech = new SpeechSynthesisUtterance(text);
                         window.speechSynthesis.speak(speech); 
 
-                        console.log(2);
+                        
                         markerLatitude = this.getAttribute('gps-new-entity-place').latitude;
                         markerLongitude =this.getAttribute('gps-new-entity-place').longitude;
                         
