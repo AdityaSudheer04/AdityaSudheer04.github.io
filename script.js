@@ -160,6 +160,7 @@ window.onload = () => {
                             if(text){
                                 console.log(text);
                                 if(spoke === 0){
+                                    spoke+=1;
                                     let speech = new SpeechSynthesisUtterance(text);
                                     window.speechSynthesis.speak(speech);
                                 }
