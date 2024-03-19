@@ -167,10 +167,11 @@ window.onload = () => {
                                     window.speechSynthesis.speak(speech);
                                 
                             }
+                            
 
                         });
                         }
-
+                        spoke -= 1;
                         console.log(text);
                          
 
