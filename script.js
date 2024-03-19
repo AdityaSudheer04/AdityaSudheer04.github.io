@@ -172,9 +172,12 @@ window.onload = () => {
                                 longitude: tourGuideCoords[1]
                             });
                             tourGuide.addEventListener('model-loaded', () => {
-                                // Do nothing here to keep the model static
+                                const animationMixer = model.getObject3D('animationMixer');
+                                if (animationMixer) {
+                                    animationMixer.timeScale = 1; // Adjust time scale if needed
+                                    animationMixer.playAllAnimations(); // Play all animations
+                                }
                             });
-                            console.log("Entity created");
                 
                             document.querySelector('a-scene').appendChild(tourGuide);
                             tourGuideAdded += 1;
