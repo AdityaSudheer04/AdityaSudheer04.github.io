@@ -118,14 +118,18 @@ window.onload = () => {
                     }
 
                     function processInformationTags(node) {
+                        console.log("1st");
                         if (node.nodeName === "tag") {
+                            console.log("2nd");
                             let info;
                             Array.from(node.attributes).forEach(attribute => {
                                 if (attribute.nodeName === "k" && attribute.nodeValue === "information") {
+                                    console.log("info set");
                                     info = node.getAttribute("v");
                                 }
                             });
                             if (info) {
+                                console.log("display");
                                 setTimeout(() => { textOverlay.innerHTML = info; }, 3001);
                                 setTimeout(() => {  textOverlay.innerHTML = "";}, 8000);
                                 console.log("speak");
@@ -141,25 +145,14 @@ window.onload = () => {
                         node.childNodes.forEach(childNode => {
                             processTags(childNode);
                             console.log(spoke);
-                            if (childNode.nodeName === "tag" && spoke == 0) {
-                                console.log(spoke);
-                                let info;
-                                Array.from(childNode.attributes).forEach(attribute => {
-                                    if (attribute.nodeName === "k" && attribute.nodeValue === "information") {
-                                        info = childNode.getAttribute("v");
-                                    }
-                                });
-                                if (info) {
-                                    setTimeout(() => { textOverlay.innerHTML = info; }, 3001);
-                                    setTimeout(() => {  textOverlay.innerHTML = "";}, 8000);
-                                    console.log("speak");
-                                    
-                                    let speech = new SpeechSynthesisUtterance(info);
-                                    window.speechSynthesis.speak(speech);   
-                                }
+                            if(spoke == 0)
+                            {
                                 spoke += 1;
+                                processInformationTags(childNode);
                                 console.log(spoke);
+                                console.log("voice");
                             }
+                            // processInformationTags(childNode);
 
                         });
                         console.log(2);
@@ -189,7 +182,7 @@ window.onload = () => {
                                 latitude: tourGuideCoords[0],
                                 longitude: tourGuideCoords[1]
                             });
-                            tourGuide.setAttribute("animation-mixer");
+                            tourGuide.setAttribute('scale', '0.05 0.05 0.05');
                             tourGuide.addEventListener('model-loaded', () => {
                                 // const animationMixer = model.getObject3D('animationMixer');
                                 // if (animationMixer) {
