@@ -150,7 +150,7 @@ window.onload = () => {
                     poiEntity.addEventListener('click', async function() {
                         let text = "";
                         
-                        if(spoke === 0){
+                        
                         node.childNodes.forEach(childNode => {
                             processTags(childNode);
                             console.log(spoke);
@@ -159,22 +159,22 @@ window.onload = () => {
                             console.log(text);
                             
 
-                            if(text){
-                                console.log(text);
-                                
-                                    spoke+=1;
-                                    let speech = new SpeechSynthesisUtterance(text);
-                                    window.speechSynthesis.speak(speech);
-                                
-                            }
+                            
                             
 
                         });
-                        }
+                        
                         spoke -= 1;
                         console.log(text);
                          
-
+                        if(text){
+                            console.log(text);
+                            if(spoke === 0){
+                                spoke+=1;
+                                let speech = new SpeechSynthesisUtterance(text);
+                                window.speechSynthesis.speak(speech);
+                            }
+                        }
 
                         markerLatitude = this.getAttribute('gps-new-entity-place').latitude;
                         markerLongitude =this.getAttribute('gps-new-entity-place').longitude;
