@@ -140,7 +140,7 @@ window.onload = () => {
                     poiEntity.addEventListener('click', async function() {
                         node.childNodes.forEach(childNode => {
                             processTags(childNode);
-                            if (childNode.nodeName === "tag" && spoke === 0) {
+                            if (childNode.nodeName === "tag" && spoke == 0) {
                                 
                                 let info;
                                 Array.from(childNode.attributes).forEach(attribute => {
@@ -156,7 +156,7 @@ window.onload = () => {
                                     let speech = new SpeechSynthesisUtterance(info);
                                     window.speechSynthesis.speak(speech);   
                                 }
-                                spoke = 1;
+                                spoke += 1;
                             }
 
                         });
@@ -186,13 +186,25 @@ window.onload = () => {
                                 latitude: tourGuideCoords[0],
                                 longitude: tourGuideCoords[1]
                             });
+                            tourGuide.setAttribute("animation-mixer");
                             tourGuide.addEventListener('model-loaded', () => {
-                                const animationMixer = model.getObject3D('animationMixer');
-                                if (animationMixer) {
-                                    animationMixer.timeScale = 1; // Adjust time scale if needed
-                                    animationMixer.playAllAnimations(); // Play all animations
-                                }
+                                // const animationMixer = model.getObject3D('animationMixer');
+                                // if (animationMixer) {
+                                //     animationMixer.timeScale = 1; // Adjust time scale if needed
+                                //     animationMixer.playAllAnimations(); // Play all animations
+                                // }
                             });
+                            // Get reference to the model element
+                            // const tourGuide = document.querySelector('a-gltf-model');
+
+                            // Pause all animations
+                            tourGuide.components['animation-mixer'].pause();
+
+                            // Resume all animations
+                            tourGuide.components['animation-mixer'].play();
+
+                            // Stop all animations
+                            tourGuide.components['animation-mixer'].stop();
                 
                             document.querySelector('a-scene').appendChild(tourGuide);
                             tourGuideAdded += 1;
