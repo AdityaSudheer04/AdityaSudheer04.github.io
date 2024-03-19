@@ -31,8 +31,8 @@ window.onload = () => {
         // Calculate the guide position 2 meters away in the direction of the POI
         console.log(displacementLatitude);
         let guidePosition = [
-            currentPosition[0] + 0.0000001,
-            currentPosition[1] + 0.0000001
+            currentPosition[0] + 0.000001,
+            currentPosition[1] + 0.000001
         ];
         console.log(currentPosition[0]);
         console.log(guidePosition[0]);
@@ -119,11 +119,10 @@ window.onload = () => {
                         }
                     }
 
-                    function processInformationTags(node, number) {
-                        console.log(number*100);
-                        console.log("1st");
+                    function processInformationTags(node) {
+                        
                         if (node.nodeName === "tag") {
-                            console.log("2nd");
+                            
                             let info;
                             Array.from(node.attributes).forEach(attribute => {
                                 if (attribute.nodeName === "k" && attribute.nodeValue === "information") {
@@ -131,22 +130,21 @@ window.onload = () => {
                                     info = node.getAttribute("v");
                                 }
                             });
-                            console.log(number*100);
-                            if (info && !number) {
+                            
+                            if (info) {
                                 console.log("display");
                                 setTimeout(() => { textOverlay.innerHTML = info; }, 3001);
                                 setTimeout(() => {  textOverlay.innerHTML = "";}, 8000);
                                 console.log("speak");
                                 
-                                let speech = new SpeechSynthesisUtterance(info);
-                                window.speechSynthesis.speak(speech);   
+                                  
                             }
                         }
                     }
                     
                     
                     poiEntity.addEventListener('click', async function() {
-                        spoke = 0;
+                        let text = "";
                         node.childNodes.forEach(childNode => {
                             processTags(childNode);
                             console.log(spoke);
@@ -158,10 +156,14 @@ window.onload = () => {
                             //     console.log(spoke);
                             //     console.log("voice");
                             // }
-                            processInformationTags(childNode, spoke);
+                            processInformationTags(childNode);
                             spoke += 1;
 
                         });
+
+                        let speech = new SpeechSynthesisUtterance(info);
+                        window.speechSynthesis.speak(speech); 
+
                         console.log(2);
                         markerLatitude = this.getAttribute('gps-new-entity-place').latitude;
                         markerLongitude =this.getAttribute('gps-new-entity-place').longitude;
