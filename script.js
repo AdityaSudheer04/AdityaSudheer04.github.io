@@ -31,8 +31,8 @@ window.onload = () => {
         // Calculate the guide position 2 meters away in the direction of the POI
         console.log(displacementLatitude);
         let guidePosition = [
-            currentPosition[0] + 0.00001,
-            currentPosition[1] + 0.00001
+            currentPosition[0] + 0.0001,
+            currentPosition[1] + 0.0001
         ];
         console.log(currentPosition[0]);
         console.log(guidePosition[0]);
