@@ -141,24 +141,25 @@ window.onload = () => {
                         node.childNodes.forEach(childNode => {
                             processTags(childNode);
                             console.log(spoke);
-                            // if (childNode.nodeName === "tag" && spoke == 0) {
-                                
-                            //     let info;
-                            //     Array.from(childNode.attributes).forEach(attribute => {
-                            //         if (attribute.nodeName === "k" && attribute.nodeValue === "information") {
-                            //             info = childNode.getAttribute("v");
-                            //         }
-                            //     });
-                            //     if (info) {
-                            //         setTimeout(() => { textOverlay.innerHTML = info; }, 3001);
-                            //         setTimeout(() => {  textOverlay.innerHTML = "";}, 8000);
-                            //         console.log("speak");
+                            if (childNode.nodeName === "tag" && spoke == 0) {
+                                console.log(spoke);
+                                let info;
+                                Array.from(childNode.attributes).forEach(attribute => {
+                                    if (attribute.nodeName === "k" && attribute.nodeValue === "information") {
+                                        info = childNode.getAttribute("v");
+                                    }
+                                });
+                                if (info) {
+                                    setTimeout(() => { textOverlay.innerHTML = info; }, 3001);
+                                    setTimeout(() => {  textOverlay.innerHTML = "";}, 8000);
+                                    console.log("speak");
                                     
-                            //         let speech = new SpeechSynthesisUtterance(info);
-                            //         window.speechSynthesis.speak(speech);   
-                            //     }
-                            //     spoke += 1;
-                            // }
+                                    let speech = new SpeechSynthesisUtterance(info);
+                                    window.speechSynthesis.speak(speech);   
+                                }
+                                spoke += 1;
+                                console.log(spoke);
+                            }
 
                         });
                         markerLatitude = this.getAttribute('gps-new-entity-place').latitude;
@@ -197,16 +198,7 @@ window.onload = () => {
                             });
                             // Get reference to the model element
                             console.log(83);
-                            const model = document.querySelector('a-gltf-model');
-
-// Pause all animations
-                            model.components['animation-mixer'].pause();
-
-                            // Resume all animations
-                            model.components['animation-mixer'].play();
-
-                            // Stop all animations
-                            model.components['animation-mixer'].stop();
+                            
                 
                             document.querySelector('a-scene').appendChild(tourGuide);
                             tourGuideAdded += 1;
