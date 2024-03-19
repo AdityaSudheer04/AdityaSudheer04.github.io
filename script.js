@@ -136,12 +136,12 @@ window.onload = () => {
                         }
                     }
                     
-                    
+                    spoke = 0;
                     poiEntity.addEventListener('click', async function() {
                         node.childNodes.forEach(childNode => {
                             processTags(childNode);
                             if (childNode.nodeName === "tag" && spoke === 0) {
-                                spoke++;
+                                
                                 let info;
                                 Array.from(childNode.attributes).forEach(attribute => {
                                     if (attribute.nodeName === "k" && attribute.nodeValue === "information") {
@@ -156,6 +156,7 @@ window.onload = () => {
                                     let speech = new SpeechSynthesisUtterance(info);
                                     window.speechSynthesis.speak(speech);   
                                 }
+                                spoke = 1;
                             }
 
                         });
