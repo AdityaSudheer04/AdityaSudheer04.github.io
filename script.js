@@ -162,6 +162,7 @@ window.onload = () => {
                             }
 
                         });
+                        console.log(2);
                         markerLatitude = this.getAttribute('gps-new-entity-place').latitude;
                         markerLongitude =this.getAttribute('gps-new-entity-place').longitude;
                         
@@ -214,7 +215,7 @@ window.onload = () => {
                                 }
                                     
                                 tourGuideAdded = 0;
-                            }, 10000)
+                            }, 20000)
 
                         }
                         setTimeout(() => {
