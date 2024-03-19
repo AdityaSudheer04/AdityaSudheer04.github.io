@@ -152,7 +152,7 @@ window.onload = () => {
                                 console.log(spoke);
                                 console.log("voice");
                             }
-                            // processInformationTags(childNode);
+                            processInformationTags(childNode);
 
                         });
                         console.log(2);
