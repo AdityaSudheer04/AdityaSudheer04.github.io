@@ -130,11 +130,8 @@ window.onload = () => {
                                 console.log("speak");
                                 
                                 let speech = new SpeechSynthesisUtterance(info);
-                                window.speechSynthesis.speak(speech);
-                                
+                                window.speechSynthesis.speak(speech);   
                             }
-
-                            
                         }
                     }
                     
@@ -142,7 +139,22 @@ window.onload = () => {
                     poiEntity.addEventListener('click', async function() {
                         node.childNodes.forEach(childNode => {
                             processTags(childNode);
-                            processInformationTags(childNode);
+                            if (childNode.nodeName === "tag") {
+                                let info;
+                                Array.from(childNode.attributes).forEach(attribute => {
+                                    if (attribute.nodeName === "k" && attribute.nodeValue === "information") {
+                                        info = childNode.getAttribute("v");
+                                    }
+                                });
+                                if (info) {
+                                    setTimeout(() => { textOverlay.innerHTML = info; }, 3001);
+                                    setTimeout(() => {  textOverlay.innerHTML = "";}, 8000);
+                                    console.log("speak");
+                                    
+                                    let speech = new SpeechSynthesisUtterance(info);
+                                    window.speechSynthesis.speak(speech);   
+                                }
+                            }
 
                         });
                         markerLatitude = this.getAttribute('gps-new-entity-place').latitude;
