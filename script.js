@@ -157,7 +157,7 @@ window.onload = () => {
                             console.log(text);
                             
 
-                            if(spoke == 0)
+                            if(spoke == 0 && text)
                             {
                                 
                                 let speech = new SpeechSynthesisUtterance(text);
