@@ -136,10 +136,11 @@ window.onload = () => {
                                 setTimeout(() => { textOverlay.innerHTML = info; }, 3001);
                                 setTimeout(() => {  textOverlay.innerHTML = "";}, 8000);
                                 console.log("speak");
-                                
+                                return info;
                                   
                             }
                         }
+                        
                     }
                     
                     
@@ -156,7 +157,7 @@ window.onload = () => {
                             //     console.log(spoke);
                             //     console.log("voice");
                             // }
-                            processInformationTags(childNode);
+                            text = processInformationTags(childNode);
                             spoke += 1;
 
                         });
@@ -165,7 +166,7 @@ window.onload = () => {
                         let speech = new SpeechSynthesisUtterance(text);
                         window.speechSynthesis.speak(speech); 
 
-                        
+
                         markerLatitude = this.getAttribute('gps-new-entity-place').latitude;
                         markerLongitude =this.getAttribute('gps-new-entity-place').longitude;
                         
