@@ -33,7 +33,8 @@ window.onload = () => {
             currentPosition[0] + displacementLatitude,
             currentPosition[1] + displacementLongitude
         ];
-        
+        console.log(currentPosition[0]);
+        console.log(guidePosition[0]);
         return guidePosition;
     }
     
@@ -117,7 +118,8 @@ window.onload = () => {
                         }
                     }
 
-                    function processInformationTags(node) {
+                    function processInformationTags(node, number) {
+                        console.log(number*100);
                         console.log("1st");
                         if (node.nodeName === "tag") {
                             console.log("2nd");
@@ -128,7 +130,8 @@ window.onload = () => {
                                     info = node.getAttribute("v");
                                 }
                             });
-                            if (info) {
+                            console.log(number*100);
+                            if (info && !number) {
                                 console.log("display");
                                 setTimeout(() => { textOverlay.innerHTML = info; }, 3001);
                                 setTimeout(() => {  textOverlay.innerHTML = "";}, 8000);
@@ -140,19 +143,22 @@ window.onload = () => {
                         }
                     }
                     
-                    spoke = 0;
+                    
                     poiEntity.addEventListener('click', async function() {
+                        spoke = 0;
                         node.childNodes.forEach(childNode => {
                             processTags(childNode);
                             console.log(spoke);
-                            if(spoke == 0)
-                            {
-                                spoke += 1;
-                                processInformationTags(childNode);
-                                console.log(spoke);
-                                console.log("voice");
-                            }
-                            processInformationTags(childNode);
+                            // if(spoke == 0)
+                            // {
+                                
+                            //     processInformationTags(childNode, spoke);
+                            //     spoke += 1;
+                            //     console.log(spoke);
+                            //     console.log("voice");
+                            // }
+                            processInformationTags(childNode, spoke);
+                            
 
                         });
                         console.log(2);
@@ -175,7 +181,7 @@ window.onload = () => {
                                 latitudeGuide = position.coords.latitude;
                             })
                             console.log("Button clicked");
-                            console.log(tourGuideCoords[0]);
+                            // console.log(tourGuideCoords[0]);
                             tourGuide = document.createElement('a-gltf-model');
                             tourGuide.setAttribute("src", "./assets/models/man_one.glb");
                             tourGuide.setAttribute('gps-new-entity-place', {
