@@ -118,9 +118,9 @@ window.onload = () => {
                             });
                         }
                     }
-
-                    function processInformationTags(node) {
-                        let info;
+                    let info;
+                    async function processInformationTags(node) {
+                        
                         if (node.nodeName === "tag") {
                             
                             
@@ -134,29 +134,28 @@ window.onload = () => {
                             if (info) {
                                 console.log("display");
                                 setTimeout(() => { textOverlay.innerHTML = info; }, 3001);
-                                setTimeout(() => {  textOverlay.innerHTML = "";}, 8000);
+                                // setTimeout(() => {  textOverlay.innerHTML = "";}, 8000);
                                 console.log("speak");
                                 
                                   
                             }
                         }
-                        console.log(info);
-                        return info;
+                        
 
                         
                     }
                     
                     
                     poiEntity.addEventListener('click', async function() {
-                        let text = "";
+                        
                         
                         
                         node.childNodes.forEach(childNode => {
                             processTags(childNode);
                             console.log(spoke);
                             
-                            text = processInformationTags(childNode);
-                            console.log(text);
+                            processInformationTags(childNode)
+                            
                             
 
                             
@@ -165,16 +164,9 @@ window.onload = () => {
                         });
                         
                         
-                        console.log(text);
+                        
                          
-                        if(text){
-                            console.log(text);
-                            if(spoke === 0){
-                                spoke+=1;
-                                let speech = new SpeechSynthesisUtterance(text);
-                                window.speechSynthesis.speak(speech);
-                            }
-                        }
+                        
 
                         markerLatitude = this.getAttribute('gps-new-entity-place').latitude;
                         markerLongitude =this.getAttribute('gps-new-entity-place').longitude;
@@ -189,7 +181,14 @@ window.onload = () => {
                         if(tourGuideAdded === 0)
                         {
 
-                        
+                            if(info){
+                                console.log(text);
+                                // if(spoke === 0){
+                                    // spoke+=1;
+                                    let speech = new SpeechSynthesisUtterance(info);
+                                    window.speechSynthesis.speak(speech);
+                                // }
+                            }
                             navigator.geolocation.getCurrentPosition(function(position) {
                                 longitudeGuide = position.coords.longitude;
                                 latitudeGuide = position.coords.latitude;
