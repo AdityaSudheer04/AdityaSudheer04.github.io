@@ -76,7 +76,7 @@ model.components['animation-mixer'].play();
                 const longitude = e.detail.position.longitude;
 
                 
-                const response = await fetch(`https://api.openstreetmap.org/api/0.6/map?bbox=${longitude - 0.01},${latitude - 0.01},${longitude + 0.01},${latitude + 0.01}`);
+                const response = await fetch(`https://api.openstreetmap.org/api/0.6/map?bbox=${longitude - 0.003},${latitude - 0.003},${longitude + 0.003},${latitude + 0.003}`);
                 const data = await response.text();
 
                 // Parse the XML response from OSM
