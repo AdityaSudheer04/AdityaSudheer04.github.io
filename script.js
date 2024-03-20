@@ -10,6 +10,17 @@ window.onload = () => {
     let markerLatitude;
     let markerLongitude;
 
+    const model = document.querySelector('a-gltf-model');
+
+// Pause all animations
+// model.components['animation-mixer'].pause();
+
+// Resume all animations
+model.components['animation-mixer'].play();
+
+// Stop all animations
+// model.components['animation-mixer'].stop();
+
     function distance(pointA, pointB){
         return Math.sqrt((pointA[0]-pointB[0])^2 + (pointA[1]-pointB[1])^2);
     }
