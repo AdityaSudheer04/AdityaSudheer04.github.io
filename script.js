@@ -11,6 +11,7 @@ window.onload = () => {
     let markerLongitude;
 
     const model = document.querySelector('a-gltf-model');
+    const camera2 = document.querySelector('.model-camera')
 
 // Pause all animations
 // model.components['animation-mixer'].pause();
@@ -200,6 +201,8 @@ model.components['animation-mixer'].play();
                                     window.speechSynthesis.speak(speech);
                                 // }
                             }
+                            
+                            
                             navigator.geolocation.getCurrentPosition(function(position) {
                                 longitudeGuide = position.coords.longitude;
                                 latitudeGuide = position.coords.latitude;
@@ -216,7 +219,7 @@ model.components['animation-mixer'].play();
                             
                             // Get reference to the model element
                             console.log(83);
-                            
+                            camera2.setAttribute("active","true");
                 
                             document.querySelector('a-scene').appendChild(tourGuide);
                             tourGuideAdded += 1;
@@ -228,12 +231,12 @@ model.components['animation-mixer'].play();
                                 if(tourGuideAdded)
                                 {
                                     document.querySelector('a-scene').removeChild(tourGuide);
-                                        
+                                    camera2.setAttribute("active","false");
                                     console.log('removed');
                                 }
                                     
                                 tourGuideAdded = 0;
-                            }, 20000)
+                            }, 10000)
 
                         }
                         setTimeout(() => {
