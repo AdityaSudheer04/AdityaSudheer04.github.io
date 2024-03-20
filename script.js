@@ -7,10 +7,10 @@ window.onload = () => {
     let tourGuide;
     let spoke = 0;
 
+
     let markerLatitude;
     let markerLongitude;
     
-    let speechEnd = false;
 
     const model = document.querySelector('a-gltf-model');
     const camera1 = document.getElementById('main-camera')
@@ -148,7 +148,7 @@ model.components['animation-mixer'].play();
                             
                             if (info) {
                                 console.log("display");
-                                setTimeout(() => { textOverlay.innerHTML = info; }, 3001);
+                                setTimeout(() => { textOverlay.innerHTML = ""; }, 3001);
                                 // setTimeout(() => {  textOverlay.innerHTML = "";}, 8000);
                                 console.log("speak");
                                 
@@ -217,7 +217,7 @@ model.components['animation-mixer'].play();
                             })
                             console.log("Button clicked");
                             // console.log(tourGuideCoords[0]);
-                            tourGuide = document.createElement('a-gltf-model');
+                            // tourGuide = document.createElement('a-gltf-model');
                             tourGuide.setAttribute("src", "./assets/models/man_one.glb");
                             tourGuide.setAttribute('gps-new-entity-place', {
                                 latitude: tourGuideCoords[0],
