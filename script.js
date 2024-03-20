@@ -7,7 +7,6 @@ window.onload = () => {
     let tourGuide;
     let spoke = 0;
 
-
     let markerLatitude;
     let markerLongitude;
     
