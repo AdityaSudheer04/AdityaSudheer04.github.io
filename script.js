@@ -202,13 +202,7 @@ window.onload = () => {
                                 longitude: tourGuideCoords[1]
                             });
                             tourGuide.setAttribute('scale', '0.05 0.05 0.05');
-                            tourGuide.addEventListener('model-loaded', () => {
-                                // const animationMixer = model.getObject3D('animationMixer');
-                                // if (animationMixer) {
-                                //     animationMixer.timeScale = 1; // Adjust time scale if needed
-                                //     animationMixer.playAllAnimations(); // Play all animations
-                                // }
-                            });
+                            
                             // Get reference to the model element
                             console.log(83);
                             
@@ -218,6 +212,7 @@ window.onload = () => {
                             console.log(tourGuide);
                             console.log("Entity appended to scene");
                             console.log(tourGuideAdded);
+                            console.log(tourGuide.getAttribute('scale'));
                             setTimeout(function(){
                                 if(tourGuideAdded)
                                 {
