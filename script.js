@@ -11,7 +11,7 @@ window.onload = () => {
     let markerLongitude;
 
     const model = document.querySelector('a-gltf-model');
-    const camera2 = document.querySelector('.model-camera')
+    const camera2 = document.getElementById('model-camera')
 
 // Pause all animations
 // model.components['animation-mixer'].pause();
