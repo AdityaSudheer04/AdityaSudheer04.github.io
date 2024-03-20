@@ -9,6 +9,8 @@ window.onload = () => {
 
     let markerLatitude;
     let markerLongitude;
+    
+    let speechEnd = false;
 
     const model = document.querySelector('a-gltf-model');
     const camera1 = document.getElementById('main-camera')
@@ -200,6 +202,11 @@ model.components['animation-mixer'].play();
                                     // spoke+=1;
                                     let speech = new SpeechSynthesisUtterance(info);
                                     window.speechSynthesis.speak(speech);
+                                    speech.onend = () => {
+                                        camera2.setAttribute("active","false");
+                                        camera1.setAttribute("active","true");
+                                    }
+
                                 // }
                             }
                             
@@ -236,8 +243,7 @@ model.components['animation-mixer'].play();
                                     
                                     console.log('removed');
                                 }
-                                camera2.setAttribute("active","false");
-                                camera1.setAttribute("active","true");
+                                
                                 tourGuideAdded = 0;
                             }, 10000)
                             
