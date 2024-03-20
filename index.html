@@ -16,7 +16,7 @@
 </div>
 
 <a-scene cursor = 'rayOrigin: mouse' vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' renderer='antialias: true; alpha: true'>
-    <a-camera active="true" look-controls gps-new-camera='gpsMinDistance: 2'></a-camera>
+    <a-camera id = "main-camera" active="true" look-controls gps-new-camera='gpsMinDistance: 2'></a-camera>
     <a-camera id = "model-camera" active="false" look-controls>
         <a-gltf-model src = "url(./assets/models/male_character_3.glb)" position="0 -1 -1" animation-mixer="clip:Take 001; loop:true; timeScale: 1; crossFadeDuration: 1"
         ></a-gltf-model>

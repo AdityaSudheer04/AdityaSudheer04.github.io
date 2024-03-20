@@ -11,6 +11,7 @@ window.onload = () => {
     let markerLongitude;
 
     const model = document.querySelector('a-gltf-model');
+    const camera1 = document.getElementById('main-camera')
     const camera2 = document.getElementById('model-camera')
 
 // Pause all animations
@@ -220,6 +221,7 @@ model.components['animation-mixer'].play();
                             // Get reference to the model element
                             console.log(83);
                             camera2.setAttribute("active","true");
+                            camera1.setAttribute("active","false")
                 
                             document.querySelector('a-scene').appendChild(tourGuide);
                             tourGuideAdded += 1;
@@ -235,6 +237,7 @@ model.components['animation-mixer'].play();
                                     console.log('removed');
                                 }
                                 camera2.setAttribute("active","false");
+                                camera1.setAttribute("active","true");
                                 tourGuideAdded = 0;
                             }, 10000)
                             
