@@ -231,12 +231,13 @@ model.components['animation-mixer'].play();
                                 if(tourGuideAdded)
                                 {
                                     document.querySelector('a-scene').removeChild(tourGuide);
-                                    camera2.setAttribute("active","false");
+                                    
                                     console.log('removed');
                                 }
-                                    
+                                camera2.setAttribute("active","false");
                                 tourGuideAdded = 0;
                             }, 10000)
+                            
 
                         }
                         setTimeout(() => {
