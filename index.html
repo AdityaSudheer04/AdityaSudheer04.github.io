@@ -17,8 +17,8 @@
 <a-scene cursor = 'rayOrigin: mouse' vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' renderer='antialias: true; alpha: true'>
     <a-camera active="true" look-controls gps-new-camera='gpsMinDistance: 2'></a-camera>
     <a-camera active="true" look-controls>
-        <a-entity geometry="primitive: plane; height: 0.2; width: 0.2" position="0 0 -1"
-            material="color: gray; opacity: 0.5"></a-entity>
+        <a-entity gltf-model = "url(./assets/models/man_one.glb)" position="0 0 -1"
+        ></a-entity>
     </a-camera>
 </a-scene>
 <script src = "script.js"></script>
